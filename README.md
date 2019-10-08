@@ -1,2 +1,2 @@
 # hello-world
-Initial project - testing git
+GitHub Guides tutorial
