@@ -1,15 +1,14 @@
-# 🚀 Welcome to your new awesome project!
+# Hellow World - project running
 
-This project has been created using **webpack scaffold**, you can now run
+Require NodeJS, npm, Webpack;
+
+To install all dependencies:
+```
+npm i
+```
+
+To run project:
 
 ```
 npm run build
 ```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
