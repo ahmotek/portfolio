@@ -1,17 +1,34 @@
-$font-path: '../fonts/';
-$img-path: '../images/';
+@import 'config/config';
+  //- _font-face
+  //- _color
+  //- _path
+  //- _type
+  //- _z-index
+  //- _global
 
-@font-face {
-  font-family: OpenSans;
-  src: url($font-path + 'OpenSans-Regular.ttf');
-}
+@import 'utils/utils';
+  //- _functions
+  //- _mixins
+  //- _placeholders
 
-body {
-  font-family: OpenSans;
-  min-height: 100vh;
-  background: rgb(94, 0, 58);
-  color: white;
-  background-image: url($img-path + 'cat.jpg'); 
-  background-position: center;
-  background-repeat: no-repeat;
-}
+@import 'base/base';
+  //- reset
+  //- root
+
+@import 'objects/objects';
+  //- buttons
+  //- form-elements
+  //- icons
+  //- helpers - simple class based molecules
+
+@import 'layout/layout'; 
+  //- page
+  //- page-head
+  //- header
+  //- footer
+
+@import 'components/components';
+  //- component folder may exist for particular use
+  //- components import file independentely
+
+
