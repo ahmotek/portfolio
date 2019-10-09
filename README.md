@@ -1,8 +1,15 @@
-# hello-world
-GitHub Guides tutorial
+# 🚀 Welcome to your new awesome project!
 
-1. Create a Repository
-2. Create a Branch
-3. Make and commit changes
-4. Open a Pull Request
-5. Merge your Pull Request
+This project has been created using **webpack scaffold**, you can now run
+
+```
+npm run build
+```
+
+or
+
+```
+yarn build
+```
+
+to bundle your application
