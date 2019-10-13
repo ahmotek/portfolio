@@ -31,10 +31,10 @@ module.exports = {
   mode: 'development',
 
   // Path to your entry point. From this file Webpack will begin his work
-  entry: './src/js/index.js',
+  entry: './src/js/app.js',
 
   output: {
-    filename: 'index.js',
+    filename: 'app.js',
     path: path.resolve(__dirname, 'dist')
   },
 
@@ -106,7 +106,7 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              outputPath: 'images'
+              outputPath: 'assets/images'
             }
           }
         ]
@@ -117,7 +117,7 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              outputPath: 'fonts'
+              outputPath: 'assets/fonts'
             }
           }
         ]

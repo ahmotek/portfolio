@@ -1,4 +1,31 @@
-//- browser reset
-@import 'src/reset';
-//- root
-@import 'src/root';
+//- * DOM basic styles *
+
+/**
+ * Set up box model for the root element
+ */
+ html {
+  box-sizing: border-box;
+}
+
+/**
+ * Inherit root box-sizing value to all DOM elements
+ * https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/**
+ * Basic link styles
+ */
+a {
+  color: $main-color;
+  text-decoration: none;
+
+  @include on-event {
+    color: $text-color;
+    text-decoration: underline;
+  }
+}

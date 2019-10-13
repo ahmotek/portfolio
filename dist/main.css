@@ -1,13 +1,38 @@
-@font-face {
-  font-family: OpenSans;
-  src: url(fonts/629a55a7e793da068dc580d184cc0e31.ttf);
+/**
+ * Set up box model for the root element
+ */
+html {
+  box-sizing: border-box;
 }
+
+/**
+ * Inherit root box-sizing value to all DOM elements
+ * https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/**
+ * Basic link styles
+ */
+a {
+  color: #cc6666;
+  text-decoration: none;
+}
+a:hover, a:active, a:focus {
+  color: #41474b;
+  text-decoration: underline;
+}
+
+/**
+ * Basic typography style for copy text
+ */
 body {
-  font-family: OpenSans;
-  min-height: 100vh;
-  background: #5e003a;
-  color: white;
-  background-image: url(images/e1d5874c81ec7d690e1de0cadb0d3b8b.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
+  color: #41474b;
+  font: normal 125%/1.4 "Open Sans", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
+
+/*# sourceMappingURL=main.css.map */
