@@ -2,4 +2,6 @@
 
 //- Relative or absolute URL where all assets are served from
 /// @type String
-$base-url: '/assets/' !default;
+$base-url: '../assets/' !default;
+$image-url: '../assets/images/' !default;
+$font-url: '../assets/fonts/' !default;
