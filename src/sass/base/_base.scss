@@ -1,4 +1,4 @@
-//- * DOM basic styles *
+//- DOM basic styles
 
 /**
  * Set up box model for the root element
@@ -22,7 +22,7 @@
  */
 a {
   color: $main-color;
-  text-decoration: none;
+  text-decoration: none; 
 
   @include on-event {
     color: $text-color;
