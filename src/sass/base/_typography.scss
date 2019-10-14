@@ -4,6 +4,28 @@ body {
   color: $text-color;
   font: normal 125% / 1.4 $text-font-stack; //- 62.5% makes 'em' unit computed as 10px; 125% makes 'em' units computed as 20px;
 }
-/**
- * Define Headings, Parragraphs
- */
+
+//- TBD Headings, Parragraphs
+h1 {
+  font-size: $heading-font-1;
+}
+
+h2 {
+  font-size: $heading-font-2;
+}
+
+h3 {
+  font-size: $heading-font-3;
+}
+
+h4 {
+  font-size: $heading-font-4;
+}
+
+h5 {
+  font-size: $heading-font-5;
+}
+
+h6 {
+  font-size: $heading-font-6;
+}
