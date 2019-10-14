@@ -483,9 +483,12 @@ article > * + * {
 }
 body {
   color: #41474b;
-  font: normal 62.5%/1.4 "Open Sans", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font: normal 125%/1.4 "Open Sans", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
+/**
+ * Define Headings, Parragraphs
+ */
 .clearfix::after {
   content: "";
   clear: both;

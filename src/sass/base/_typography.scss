@@ -2,5 +2,8 @@
 
 body {
   color: $text-color;
-  font: normal 62.5% / 1.4 $text-font-stack; //- 62.5% makes em unit 10px
+  font: normal 125% / 1.4 $text-font-stack; //- 62.5% makes 'em' unit computed as 10px; 125% makes 'em' units computed as 20px;
 }
+/**
+ * Define Headings, Parragraphs
+ */
