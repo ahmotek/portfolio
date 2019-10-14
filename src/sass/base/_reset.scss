@@ -1,0 +1,102 @@
+//- DOM reset styles
+
+/**
+ * Set up box model for the root element
+ */
+html {
+  box-sizing: border-box;
+}
+
+/**
+ * Inherit root box-sizing value to all DOM elements
+ * https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+ 
+/**
+* body set to fill in the viewport and smooth scrolling
+*/
+body {
+  text-rendering: optimizeSpeed;
+}
+
+/**
+ * Remove default margins and paddings
+ * https://dev.to/hankchizljaw/a-modern-css-reset-6p3 - select lists based on has-class assigned to cover appearance of plain text 
+ */
+// body, //- Override normalize.css
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit; 
+  font-weight: inherit;
+}
+ 
+ul[class],
+ol[class] {
+  list-style: none; /* Reset list style when list has class */
+  padding: 0; /* Reset padding when list has class */
+}
+
+cite {
+  font-style: normal;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+}
+
+/**
+ * Allow form elements to inherit all font options from parent
+ */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  padding: 0;
+  background-color: transparent; 
+  color: inherit; 
+  border-width: 0; 
+  cursor: pointer;
+}
+
+input {
+  &::-moz-focus-inner {
+    border:0; 
+    margin:0;
+    padding:0; 
+  }
+}
+
+figure {
+  margin: 0;
+}

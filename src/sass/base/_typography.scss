@@ -1,7 +1,6 @@
-/**
- * Basic typography style for copy text
- */
- body {
+//- Basic typography style
+
+body {
   color: $text-color;
-  font: normal 125% / 1.4 $text-font-stack;
+  font: normal 62.5% / 1.4 $text-font-stack; //- 62.5% makes em unit 10px
 }

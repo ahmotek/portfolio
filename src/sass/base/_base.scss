@@ -1,20 +1,11 @@
 //- DOM basic styles
 
 /**
- * Set up box model for the root element
+ * body set to fill in the viewport and smooth scrolling
  */
- html {
-  box-sizing: border-box;
-}
-
-/**
- * Inherit root box-sizing value to all DOM elements
- * https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
- */
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 /**
@@ -24,8 +15,28 @@ a {
   color: $main-color;
   text-decoration: none; 
 
+  &:not([class]) {
+    text-decoration-skip-ink: auto; /* better underline resdering */
+  }
+
   @include on-event {
     color: $text-color;
     text-decoration: underline;
   }
+}
+
+/**
+ * Basic images styles
+ */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+ * Axiomatic CSS and Lobotonized Owls for flows
+ * https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
+ */
+article > * + * {
+  margin-top: $flow-space * 1.5;
 }

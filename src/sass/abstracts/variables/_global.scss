@@ -1,7 +1,10 @@
-//- This file contains application global variables
+//- Global variables
 
-//- Relative or absolute URL where all assets are served from
+//- Assets URL
 /// @type String
 $base-url: '../assets/' !default;
 $image-url: '../assets/images/' !default;
 $font-url: '../assets/fonts/' !default;
+
+//- Flow Sapce - https://24ways.org/2018/managing-flow-and-rhythm-with-css-custom-properties/
+$flow-space: 1em;
