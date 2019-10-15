@@ -471,7 +471,7 @@ article > * + * {
 
 @font-face {
   font-family: OpenSans;
-  src: url("../assets/fonts/OpenSans-Regular.ttf");
+  src: url(assets/fonts/629a55a7e793da068dc580d184cc0e31.ttf);
 }
 body {
   color: #41474b;
@@ -549,5 +549,3 @@ h6 {
   position: absolute;
   width: 1px;
 }
-
-/*# sourceMappingURL=main.css.map */
