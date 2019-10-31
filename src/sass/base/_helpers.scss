@@ -8,21 +8,6 @@
 }
 
 /**
- * Main content containers
- * 1. Make the container full-width with a maximum width
- * 2. Center it in the viewport
- * 3. Leave some space on the edges, especially valuable on small screens
- */
-.main {
-  max-width: $max-width;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: $flow-space * 2;
-  padding-right: $flow-space * 2;
-  width: 100%;
- }
-
-/**
  * Hide text while readable for screen readers
  * 1. Needed in WebKit-based browsers because of an implementation bug;
  *    See: https://code.google.com/p/chromium/issues/detail?id=457146

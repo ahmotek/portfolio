@@ -7,7 +7,17 @@ body {
 
 //- TBD Headings, Parragraphs
 h1 {
-  font-size: $heading-font-1;
+  @include respond-to('small') {
+    font-size: map-get($heading-font-1--map, small);
+  }
+
+  @include respond-to('medium') {
+    font-size: map-get($heading-font-1--map, medium);
+  }
+
+  @include respond-to('large') {
+    font-size: map-get($heading-font-1--map, large);
+  }
 }
 
 h2 {
@@ -28,4 +38,18 @@ h5 {
 
 h6 {
   font-size: $heading-font-6;
+}
+
+p {
+  @include respond-to(small) {
+    font-size: map-get($parragraph--map, small)
+  }
+
+  @include respond-to(medium) {
+    font-size: map-get($parragraph--map, medium)
+  }
+
+  @include respond-to(large) {
+    font-size: map-get($parragraph--map, large)
+  }
 }

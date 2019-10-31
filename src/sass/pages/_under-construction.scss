@@ -1,0 +1,12 @@
+//- Under Construction specific styles
+body {
+  background-color: $main-color;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $light-grey;
+}

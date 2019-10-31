@@ -14,7 +14,8 @@
         'base/base',
         'base/fonts',
         'base/typography',  
-        'base/helpers'; 
+        'base/helpers',
+        'base/layout'; 
 
 //- Layout areas
 @import 'layout/header',
@@ -29,6 +30,7 @@
         'components/icons';
 
 //- Specific Pages
-@import 'pages/home',
+@import 'pages/under-construction',
+        'pages/home',
         'pages/contact';
 

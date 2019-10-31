@@ -1,0 +1,22 @@
+//- Generic layout definitions:
+
+/**
+ * Main content containers
+ * 1. Make the container full-width with a maximum width
+ * 2. Center it in the viewport
+ * 3. Leave some space on the edges, especially valuable on small screens
+ */
+ .main {
+  width: 100%;
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $flow-space * 2;
+  padding-right: $flow-space * 2;
+
+  @include respond-to(small) {
+    width: auto;
+    margin-left: $flow-space * 2;
+    margin-right: $flow-space * 2;
+  }
+ }
