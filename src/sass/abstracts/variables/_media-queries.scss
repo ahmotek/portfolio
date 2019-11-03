@@ -2,7 +2,11 @@
 
 //- Application maximum width
 /// @type Length
-$max-width: 480px !default;
+$max-width: (
+  small: 240px,
+  medium: 480px,
+  large: 520px
+) !default;
 
 //- Breakpoints map
 /// @prop {String} keys - Keys are identifiers mapped to a given length
