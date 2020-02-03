@@ -1,5 +1,7 @@
 //- Under Construction specific styles
 body {
+  //- full background declaration guidenance
+  // background: $main-color url($image-path + 'cat.jpg') no-repeat center center;  
   background-color: $main-color;
 }
 .main {

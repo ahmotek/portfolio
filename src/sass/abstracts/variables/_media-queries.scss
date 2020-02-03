@@ -8,7 +8,20 @@ $max-width: 480px !default;
 /// @prop {String} keys - Keys are identifiers mapped to a given length
 /// @prop {Map} values - Values are actual breakpoints expressed in pixels
 $breakpoints: (
-  'small': '(max-width: 767px)',
+  // 'small': '(max-width: 767px)',
+  // 'medium': '(min-width: 768px) and (max-width: 1023px)',
+  // 'large': '(min-width: 1024px) and (max-width: 1279px)',
+  // 'xlarge': '(min-width: 1280px) and (max-width: 1439px)',
+  // 'xxlarge': '(min-width: 1440px)'
+  'small': '767px',
   'medium': '(min-width: 768px) and (max-width: 1023px)',
-  'large': '(min-width: 1024px)'
+  'large': '(min-width: 1024px) and (max-width: 1279px)',
+  'xlarge': '(min-width: 1280px) and (max-width: 1439px)',
+  'xxlarge': '(min-width: 1440px)'
 ) !default;
+
+//- Media Expressions
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+
+$media-expressions : ();

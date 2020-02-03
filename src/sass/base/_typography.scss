@@ -2,21 +2,29 @@
 
 body {
   color: $text-color;
-  font: normal 125% / 1.4 $text-font-stack; //- 62.5% makes 'em' unit computed as 10px; 125% makes 'em' units computed as 20px;
+  font: normal 62.5% / 1.4 $text-font-stack; //- 62.5% makes 'em' unit computed as 10px; 125% makes 'em' units computed as 20px;
 }
 
 //- TBD Headings, Parragraphs
 h1 {
-  @include respond-to('small') {
+  //- Selects all phone sizes until 640px
+  @include media('screen', '<=phone') {
     font-size: map-get($heading-font-1--map, small);
   }
 
-  @include respond-to('medium') {
+  //- Selects all tablet sizes from 641px to 1024px
+  @include media('screen', '>phone', '<=laptop') {
     font-size: map-get($heading-font-1--map, medium);
   }
 
-  @include respond-to('large') {
+  //- Selects all laptop sizes from 1025px to 1280px
+  @include media('screen', '>laptop', '<=desktop') {
     font-size: map-get($heading-font-1--map, large);
+  }
+
+  //- Selects all desktop screens bigger than 1281px
+  @include media('screen', '>desktop') {
+    font-size: map-get($heading-font-1--map, xlarge);
   }
 }
 
@@ -41,15 +49,18 @@ h6 {
 }
 
 p {
-  @include respond-to(small) {
+  //- @include respond-to(small) {
+  @include media('screen', '<=phone') {
     font-size: map-get($parragraph--map, small)
   }
 
-  @include respond-to(medium) {
+  //- @include respond-to(medium) {
+  @include media('screen', '>phone', '<=tablet') {
     font-size: map-get($parragraph--map, medium)
   }
 
-  @include respond-to(large) {
+  //- @include respond-to(large) {
+  @include media('screen', '>tablet', '<=desktop') {
     font-size: map-get($parragraph--map, large)
   }
 }

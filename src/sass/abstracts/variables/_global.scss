@@ -2,9 +2,9 @@
 
 //- Assets URL
 /// @type String
-$base-url: '../assets/' !default;
-$image-url: '../assets/images/' !default;
-$font-url: '../assets/fonts/' !default;
+$default-path: '../assets/' !default;
+$image-path: '../assets/images/' !default;
+$font-path: '../assets/fonts/' !default;
 
 //- Flow Sapce - https://24ways.org/2018/managing-flow-and-rhythm-with-css-custom-properties/
 $flow-space: 1em;

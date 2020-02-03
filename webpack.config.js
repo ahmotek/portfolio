@@ -89,10 +89,10 @@ module.exports = {
           }
         ]
       },
-      // {
-      //   test: /\.css$/i,
-      //   use: ['style-loader', 'css-loader'],
-      // },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
       // {
       //   test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
       //   loader: 'url-loader',
@@ -101,11 +101,12 @@ module.exports = {
       //   },
       // },
       {
-        test: /\.(png|jpe?g|gif|svg)$/,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
             loader: "file-loader",
             options: {
+              // name: '[contenthash].[ext]',
               outputPath: 'assets/images'
             }
           }
