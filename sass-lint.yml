@@ -401,7 +401,7 @@ rules:
   pseudo-element: 1
   quotes:
     - 1
-    - style: double
+    - style: single
   shorthand-values:
     - 1
     - allowed-shorthands:
