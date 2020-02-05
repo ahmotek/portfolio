@@ -1,0 +1,609 @@
+//- # TILE COMPONENT (lci-tile--galaBingo - where galaBingo is the tile type)
+
+//- ## GALA BINGO TILE COMPONENT
+.c-tile {
+  position: relative;
+  margin-right: #{map-deep-get($lci-tile-map, gap, all) /2};
+  margin-left: #{map-deep-get($lci-tile-map, gap, all) /2};
+  cursor: pointer;
+
+  .lci-icon {
+      padding-right: 0;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+      &:hover {
+          .lci-tile__overlay {
+              opacity: 1;
+              visibility: visible;
+              border-radius: #{map-get($lci-tile-map, radius) - .1};
+
+              @include respond-to(desktop) {
+                  z-index: map-deep-get($lci-tile-map, z-index, overlay);
+              }
+
+              @include respond-to(mobile-tablet) {
+                  z-index: #{map-deep-get($lci-tile-map, z-index, overlay) + 1};
+              }
+          }
+      }
+  }
+
+  //- .lci-tile inside .lci-tile-grid component
+  .lci-tile-grid & {
+      margin-right: 0;
+      margin-left: 0;
+  }
+
+  //- .lci-tile inside .lci-bonus-message component
+  .lci-bonus-message:not(.lci-bonus-message--accepted) & {
+      pointer-events: none;
+
+      &:before,
+      &:after {
+          content: '';
+          position: absolute;
+      }
+
+      &:before {
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-color: map-get($lci-tile__bonus-message, lock-overlay-color);
+          border-radius: map-get($lci-tile-jackpot--map, radius);
+          z-index: 3;
+      }
+
+      &:after {
+          display: block;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          background: url($svg-data + $padlock) no-repeat center center;
+          background-size: 25%;
+          transform: translate(-50%, -50%);
+          z-index: 4;
+      }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+      &:hover {
+          .lci-icon {
+              @include box-shadow-reset;
+          }
+
+          .lci-tile__badges {
+              animation: fadeIn 0.25s;
+              transform: translateY(-5rem);
+
+              .lci-user-panel & {
+                  transform: translateY(-4.5rem) translateX(.1rem) scale(.8);
+                  transform-origin: bottom left;
+              }
+          }
+
+          .lci-tile__badge {
+              &--hot {
+                  margin-left: -#{$lci-basic-unit * .6};
+
+                  & + .lci-tile__badge--jackpot {
+                      margin-left: -#{$lci-basic-unit / 2};
+                  }
+              }
+
+              &--jackpot {
+                  margin-left: #{$lci-basic-unit / 2};
+              }
+          }
+      }
+  }
+
+  //- .lci-tile__main
+  &__main {
+      position: relative;        
+      padding-top: calc(100% / #{map-deep-get($lci-tile-map, aspect-ratio, game-tile)});
+
+      .bingo-rooms-games & {
+          padding-top: calc(100% / #{map-deep-get($lci-tile-map, aspect-ratio, rooms-tile)});
+      }
+
+      .lci-tile-carouslider & {
+           width: map-deep-get($lci-tile-map, width, desktop);
+
+           @include respond-to(tablet) {
+               width: map-deep-get($lci-tile-map, width, tablet);
+           }
+
+           @include respond-to(mobile) {
+               width: map-deep-get($lci-tile-map, width, mobile);
+           }
+       }
+
+      .lci-user-panel & {
+          @include fluid-type(
+              width,
+              $mobile,
+              $tablet,
+              130px,
+              200px);
+
+          @include fluid-type(
+              width,
+              $tablet,
+              $desktop-max-page-width,
+              200px,
+              260px);
+
+          @include respond-to(mobile) {
+              width: map-get($lci-user-panel--tile-width--map, mobile);
+          }
+      }
+  }
+
+  //- .lci-tile__game-image
+  &__game-image {
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: map-get($lci-tile-map, radius);
+      z-index: map-deep-get($lci-tile-map, z-index, game-image);
+
+      .lci-image {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: inherit;
+          min-width: 100%;
+          min-height: 100%;
+          transform: translate(-50%, -50%);
+          user-select: none;
+
+          .bingo-rooms-games & {
+              width: auto;
+              height: 100%;
+          }
+      }
+  }
+
+  //- .lci-tile__extras contains info and favorite icons
+  &__extras {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      flex-direction: row;
+      padding-top: $lci-basic-unit;
+      padding-right: #{$lci-basic-unit / 2};
+      z-index: map-deep-get($lci-tile-map, z-index, badges);
+
+      &:empty {
+          display: none;
+      }
+
+      @include respond-to(mobile-tablet) {
+          html.desktop & {
+              z-index: #{map-deep-get($lci-tile-map, z-index, badges) + 1};
+          }
+      }
+
+      @include respond-to(tablet) {
+          padding-right: #{$lci-basic-unit / 2 + $lci-basic-unit / 4};
+
+          .lci-user-panel & {
+              padding-top: #{$lci-basic-unit / 2 + $lci-basic-unit / 4};
+              padding-right: #{$lci-basic-unit / 2};
+          }
+      }
+
+      @include respond-to(mobile) {
+          padding-top: #{$lci-basic-unit / 2};
+          padding-right: #{$lci-basic-unit / 4};
+      }
+
+      //- Hide info-icon + favorites icon if lci-tile is rendered inside BCM - .lci-bonus-message
+      .lci-bonus-message & {
+          display: none;
+      }
+
+      .lci-user-panel & {
+          @include respond-to(tablet-portrait) {
+              padding-top: #{$lci-basic-unit / 2};
+              padding-right: #{$lci-basic-unit / 4};
+          }
+      }
+  }
+
+  //- .lci-tile__icon
+  &__icon {
+      padding-right:  map-deep-get($lci-tile__icons-map, gap, desktop);
+      padding-left:  map-deep-get($lci-tile__icons-map, gap, desktop);
+      font-size: map-deep-get($lci-tile__icons-map, icon-size, not-mobile);
+
+      @include respond-to(mobile-tablet) {
+          padding-right:  map-deep-get($lci-tile__icons-map, gap, mobile-tablet);
+          padding-left:  map-deep-get($lci-tile__icons-map, gap, mobile-tablet);
+      }
+
+      @include respond-to(tablet) {
+          .lci-user-panel & {
+              font-size: map-deep-get($lci-tile__icons-map, icon-size, tablet--user-panel);
+
+              @include respond-to(portrait) {
+                  font-size: map-deep-get($lci-tile__icons-map, icon-size, mobile--user-panel);
+              }
+          }
+      }
+
+      @include respond-to(mobile) {
+          font-size: map-deep-get($lci-tile__icons-map, icon-size, mobile--carousel);
+
+          .lci-tile-grid & {
+              font-size: map-deep-get($lci-tile__icons-map, icon-size, mobile--grid);
+          }
+
+          .lci-user-panel & {
+              font-size: map-deep-get($lci-tile__icons-map, icon-size, mobile--user-panel);
+          }
+      }
+
+      .lci-icon {
+          @include box-shadow($background-color: $white);
+          color: map-deep-get($lci-tile__icons-map, color, default);
+          cursor: pointer;
+
+          @media (hover: hover) and (pointer: fine) {
+              &:hover {
+                  color: map-deep-get($lci-tile__icons-map, color, hover);
+              }
+          }
+      }
+
+      //- .lci-tile__icon--info
+      &--info {
+          //- TODO: component should render info-icon on devices only. Until then, we hide it on desktop.
+          @include respond-to(desktop) {
+              display: none;
+          }
+          
+          @include respond-to(mobile-tablet) {
+              html.desktop & {
+                  display: none;
+              }
+          }
+
+          .lci-icon {
+              fill: map-deep-get($lci-tile__icons-map, color, fill);
+          }
+      }
+
+      //- .lci-tile__icon--favorite
+      &--favorite {
+          //- only when favorite icon is pined, .lci-icon .lci-icon__svg.is-favorite
+          .is-favorite {
+              color: map-deep-get($lci-tile__icons-map, color, active);
+          }
+      }
+  }
+
+  //- wraps Hot, Jackpot, Exclusive and New
+  //- .lci-tile__badges
+  &__badges {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      font-size: 0;
+      padding: #{$lci-basic-unit} #{$lci-basic-unit} #{$lci-basic-unit} #{$lci-basic-unit / 2};
+      z-index: map-deep-get($lci-tile-map, z-index, badges);
+
+      &:empty {
+          display: none;
+      }
+
+      @include respond-to(mobile) {
+          padding: #{$lci-basic-unit / 2} #{$lci-basic-unit / 2} #{$lci-basic-unit / 2} #{$lci-basic-unit / 4};
+      }
+
+      .lci-bonus-message:not(.lci-bonus-message--accepted) & {
+          display: none;
+      }
+  }
+
+  //- .lci-tile__badge
+  &__badge {
+      position: relative;
+      display: inline-block;
+      font-size: map-deep-get($lci-tile__icons-map, icon-size, not-mobile);
+      line-height: map-deep-get($lci-tile__icons-map, badge-height, not-mobile);
+
+      @include respond-to(tablet) {
+          .lci-user-panel & {
+              font-size: map-deep-get($lci-tile__icons-map, icon-size, tablet--user-panel);
+              line-height: map-deep-get($lci-tile__icons-map, badge-height, tablet--user-panel);
+          }
+      }
+
+      @include respond-to(mobile) {
+          font-size: map-deep-get($lci-tile__icons-map, icon-size, mobile--carousel);
+          line-height: map-deep-get($lci-tile__icons-map, badge-height, mobile--carousel);
+
+          .lci-tile-grid &,
+          .lci-user-panel & {
+              vertical-align: bottom;
+          }
+
+          .lci-tile-grid & {
+              font-size: map-deep-get($lci-tile__icons-map, icon-size, mobile--grid);
+              line-height: map-deep-get($lci-tile__icons-map, badge-height, mobile--grid);
+          }
+
+          .lci-user-panel & {
+              font-size: map-deep-get($lci-tile__icons-map, icon-size, mobile--user-panel);
+              line-height: map-deep-get($lci-tile__icons-map, badge-height, mobile--user-panel);
+          }
+      }
+
+      &:not(.lci-tile__badge--hot):not(.lci-tile__badge--jackpot) {
+          padding-right: map-deep-get($lci-tile__icons-map, gap, desktop);
+          padding-left: map-deep-get($lci-tile__icons-map, gap, desktop);
+
+          @include respond-to(mobile-tablet) {
+              padding-right: map-deep-get($lci-tile__icons-map, gap, mobile-tablet);
+              padding-left: map-deep-get($lci-tile__icons-map, gap, mobile-tablet);
+          }
+      }
+
+      //- ### Modifiers for .lci-tile__badge
+      //- .lci-tile__badge--hot
+      &--hot {
+          position: relative;
+          margin-left: -#{$lci-basic-unit * 1.6};
+          margin-bottom: -#{$lci-basic-unit / 2};
+          font-size: map-deep-get($lci-tile__icons-map, hot-icon-size, not-mobile);
+          pointer-events: none;
+
+          & + .lci-tile__badge--jackpot {
+              padding-left: #{$lci-basic-unit / 2};
+
+              &:before {
+                  content: '';
+                  position: absolute;
+                  bottom: 0;
+                  left: -#{map-deep-get($lci-tile__icons-map, hot-icon-size, not-mobile)};
+                  width: map-deep-get($lci-tile__icons-map, badge-height, not-mobile);
+                  height: map-deep-get($lci-tile__icons-map, badge-height, not-mobile);
+                  background-color: map-get($lci-tile-jackpot--map, background-color);
+                  z-index: -1;
+              }
+          }
+
+          @include respond-to(tablet) {
+              .lci-user-panel & {
+                  margin-left: -#{$lci-basic-unit * 1.4};
+                  font-size: map-deep-get($lci-tile__icons-map, hot-icon-size, tablet--user-panel);
+
+                  & + .lci-tile__badge--jackpot {
+                      &:before {
+                          left: -#{map-deep-get($lci-tile__icons-map, hot-icon-size, tablet--user-panel)};
+                          width: map-deep-get($lci-tile__icons-map, badge-height, tablet--user-panel);
+                          height: map-deep-get($lci-tile__icons-map, badge-height, tablet--user-panel);
+                      }
+                  }
+              }
+          }
+
+          @include respond-to(mobile) {
+              margin-left: -#{$lci-basic-unit * 1.2};
+              margin-bottom: -#{$lci-basic-unit / 2};
+              font-size: map-deep-get($lci-tile__icons-map, hot-icon-size, mobile--carousel);
+
+              & + .lci-tile__badge--jackpot {
+                  margin-left: -#{$lci-basic-unit / 4};
+
+                  &:before {
+                      left: -#{$lci-basic-unit * 1.5};
+                      width: map-deep-get($lci-tile__icons-map, badge-height, mobile--carousel);
+                      height: map-deep-get($lci-tile__icons-map, badge-height, mobile--carousel);
+                  }
+              }
+
+              .lci-tile-grid & {
+                  font-size: map-deep-get($lci-tile__icons-map, hot-icon-size, mobile--grid);
+                  margin-bottom: -.1rem;
+
+                  & + .lci-tile__badge--jackpot {
+                      padding-left: #{$lci-basic-unit / 4};
+
+                      &:before {
+                          left: -#{$lci-basic-unit};
+                          width: #{map-deep-get($lci-tile__icons-map, badge-height, mobile--grid) - .75rem};
+                          height: map-deep-get($lci-tile__icons-map, badge-height, mobile--grid);
+                      }
+                  }
+              }
+
+              .lci-user-panel & {
+                  font-size: map-deep-get($lci-tile__icons-map, hot-icon-size, mobile--user-panel);
+                  margin-bottom: -.1rem;
+
+                  & + .lci-tile__badge--jackpot {
+                      padding-left: #{$lci-basic-unit / 4};
+
+                      &:before {
+                          left: -#{$lci-basic-unit};
+                          width: #{map-deep-get($lci-tile__icons-map, badge-height, mobile--user-panel) - .75rem};
+                          height: map-deep-get($lci-tile__icons-map, badge-height, mobile--user-panel);
+                      }
+                  }
+              }
+          }
+      }
+
+      //- .lci-tile__badge--jackpot
+      &--jackpot {
+          min-width: map-deep-get($lci-tile-jackpot--map, width, desktop);
+          margin-left: -#{$lci-basic-unit / 2};
+          padding-right: map-deep-get($lci-tile__icons-map, gap, desktop);
+
+          .lci-user-panel & {
+              & ~ .lci-tile__badge {
+                  display: none;
+              }
+          }
+
+          @include respond-to(mobile-tablet) {
+              padding-right: map-deep-get($lci-tile__icons-map, gap, mobile-tablet);
+          }
+
+          @include respond-to(tablet) {
+              min-width: map-deep-get($lci-tile-jackpot--map, width, tablet);
+          }
+
+          @include respond-to(mobile) {
+              min-width: map-deep-get($lci-tile-jackpot--map, width, mobile--carousel);
+              margin-left: -#{$lci-basic-unit / 4};
+
+              .lci-tile-grid & {
+                  min-width: map-deep-get($lci-tile-jackpot--map, width, mobile--grid);
+              }
+          }
+      }
+
+      //- .lci-tile__badge--exclusive
+      // &--exclusive {
+
+      // }
+
+      //- .lci-tile__badge--new
+      // &--new {
+
+      // }
+
+      //- Games Notification mark
+      //- .lci-tile__badge--highlighted - exists only with .lci-tile__badge--new
+      &--highlighted {
+          &:after {
+              content: '';
+              position: absolute;
+              top: map-deep-get($content-notification--structure, lci-tile--badge, not-mobile-offset-position);
+              left: #{map-deep-get($lci-tile__icons-map, gap, desktop) + map-deep-get($content-notification--structure, lci-tile--badge, not-mobile-offset-position)};
+              width: map-deep-get($content-notification--structure, lci-tile--badge, not-mobile-size);
+              height: map-deep-get($content-notification--structure, lci-tile--badge, not-mobile-size);
+              background-color: map-get($content-notification--color, primary);
+              border: 1px solid map-get($content-notification--color, lci-tile--border);
+              border-radius: map-deep-get($content-notification--structure, lci-tile--badge, general-radius);
+
+              @include respond-to(tablet) {
+                  left: #{map-deep-get($lci-tile__icons-map, gap, mobile-tablet) + map-deep-get($content-notification--structure, lci-tile--badge, not-mobile-offset-position)};
+
+                  .lci-tile-grid & {
+                      left: #{map-deep-get($lci-tile__icons-map, gap, mobile-tablet) + map-deep-get($content-notification--structure, lci-tile--badge, not-mobile-offset-position)};
+                  }
+              }
+
+              @include respond-to(mobile) {
+                  top: map-deep-get($content-notification--structure, lci-tile--badge, mobile-offset-position);
+                  left: #{map-deep-get($lci-tile__icons-map, gap, mobile-tablet) + map-deep-get($content-notification--structure, lci-tile--badge, mobile-offset-position)};
+                  width: map-deep-get($content-notification--structure, lci-tile--badge, mobile-size--carousel);
+                  height: map-deep-get($content-notification--structure, lci-tile--badge, mobile-size--carousel);
+
+                  .lci-tile-grid & {
+                      top: 0;
+                      width: map-deep-get($content-notification--structure, lci-tile--badge, mobile-size--grid);
+                      height: map-deep-get($content-notification--structure, lci-tile--badge, mobile-size--grid);
+                  }
+              }
+
+              .portlet-in-viewport & {
+                  animation: fadeZoomIn .3s cubic-bezier(.17, .67, .7, 1.38) #{map-deep-get($content-notification--structure, lci-tile--badge, animation-delay)} 1 forwards;
+              }
+          }
+      }
+  }
+
+  //- .lci-tile__overlay
+  &__overlay {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 5rem 1rem 1rem;
+      background-color: transparentize($violet, .05);
+      text-align: left;
+      border-radius: map-get($lci-tile-map, radius);
+      transition: opacity 0.3s;
+      z-index: map-deep-get($lci-tile-map, z-index, negative);
+
+      .lci-user-panel & {
+          padding-top: 4.5rem;
+      }
+  }
+
+  //- .lci-tile__game-name
+  &__game-name {
+      @include truncate(2);
+      color: map-get($lci-tile__game-name-map, color);
+      font-size: map-get($lci-tile__game-name-map, font-size);
+      font-weight: map-get($lci-tile__game-name-map, font-weight);
+      line-height: map-get($lci-tile__game-name-map, line-height);
+
+      //- If screen in between 1200 and 1500 px.
+      @include respond-to(desktop) {
+          @media only screen and (max-width: 1500px) { 
+              display: block;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+          }
+      }
+  }
+
+  //- wraps more-info and play buttons
+  //- .lci-tile__buttons
+  &__buttons {
+      @include lci-tile__buttons--structure(2);
+
+      .lci-user-panel & {
+          bottom: .5rem;
+      }
+  }
+
+  //- .lci-tile__more-info
+  &__more-info {
+      @include buttons--skin($background: $yellow, $color: $darkblue);
+
+      .lci-bonus-message__games-carouslider &,
+      .lci-search & {
+          display: none;
+      }
+  }
+
+  //- .lci-tile__play
+  &__play {
+      @include buttons--skin($background: $pink, $color: $white);
+
+      .lci-bonus-message__games-carouslider &,
+      .lci-search & {
+          width: 100%;
+      }
+  }
+
+  //- ### Modifier
+  //- .lci-tile--galaBingo
+  // &--galaBingo {
+
+  // }
+
+  //- .lci-tile--loading
+  &--loading {
+      background-color: $bright-gray;
+      border-radius: map-get($lci-tile-map, radius);
+  }
+}

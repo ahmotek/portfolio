@@ -1,0 +1,13 @@
+//- Button skin - adds a background-color with transition
+@mixin buttons--skin($background, $color) {
+  background-color: $background;
+  color: $color;
+
+  @include respond-to(desktop) {
+      transition: background .3s ease-in-out;
+
+      &:hover {
+          background-color: mix($background, $white, 70%);
+      }
+  }
+}

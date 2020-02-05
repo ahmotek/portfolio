@@ -2,6 +2,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const projectRoot = './'
+const projectRoot = path.resolve(__dirname, 'dist');
 
 /*
  * SplitChunksPlugin is enabled by default and replaced
@@ -16,7 +18,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
  *
  */
 
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /*
  * We've enabled HtmlWebpackPlugin for you! This generates a html
@@ -27,21 +29,27 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
  *
  */
 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 module.exports = {
-  mode: 'development',
+  mode: 'development', // 'production' || 'development' || 'none'
 
   // Path to your entry point. From this file Webpack will begin his work
-  entry: './src/js/app.js',
+  entry: {
+    app: './src/js/app.js',
+    print: './src/js/print.js',
+  },
 
   output: {
-    filename: 'app.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: '[name].bundle.js',
+    path: projectRoot
   },
 
   module: {
     rules: [
       {
         test: /.(js|jsx)$/,
+        exclude: /(node_modules)/,
         include: [path.resolve(__dirname, 'src')],
         loader: 'babel-loader',
 
@@ -93,21 +101,25 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
-      // {
-      //   test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
-      //   loader: 'url-loader',
-      //   options: {
-      //     limit: 8192,
-      //   },
-      // },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
             loader: "file-loader",
             options: {
-              // name: '[contenthash].[ext]',
+              esModule: false,
               outputPath: 'assets/images'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(svg)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: 'assets/images/svg'
             }
           }
         ]
@@ -122,35 +134,37 @@ module.exports = {
             }
           }
         ]
-      }
+      },
     ]
   },
 
   plugins: [
-    // new webpack.ProgressPlugin(), 
-    // new HtmlWebpackPlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      // template: path.resolve(projectRoot, '', 'index.html')
+    }),
     new MiniCssExtractPlugin({
-      filename: "[name].css"
+      filename: "main.css"
     })
   ],
 
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          priority: -10,
-          test: /[\\/]node_modules[\\/]/
-        }
-      },
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendors: {
+  //         priority: -10,
+  //         test: /[\\/]node_modules[\\/]/
+  //       }
+  //     },
 
-      chunks: 'async',
-      minChunks: 1,
-      minSize: 30000,
-      name: true
-    }
-  },
+  //     chunks: 'async',
+  //     minChunks: 1,
+  //     minSize: 30000,
+  //     name: true
+  //   }
+  // },
 
-  devServer: {
-    open: true
-  }
+  // devServer: {
+  //   open: true
+  // }
 };

@@ -1,0 +1,48 @@
+//- TILE COMPONENT variables
+
+$dark-slate-blue: #263274;
+
+//- GAME NAME SPECS - rendered only on desktop view
+$lci-tile__game-name-map : (
+    color: $white,
+    font-size: 1.8rem,
+    font-weight: 600,
+    line-height: 1.4
+);
+
+//- LCI-TILE ON LCI-BONUS-MESSAGE COMPOENENT
+$lci-tile__bonus-message : (
+    lock-overlay-color: transparentize($dark-slate-blue, .2)
+);
+
+
+
+// # Shared variables LCI-TILE COMPONENT
+//- $lci-tile vars are used on lazy-load component
+$lci-tile-map : (
+	width: (
+		desktop: 30rem, //- map-deep-get($lci-tile-map, width, desktop)
+		tablet: 22.7rem, //- map-deep-get($lci-tile-map, width, tablet)
+		mobile: 20rem //- map-deep-get($lci-tile-map, width, mobile)
+	),
+	height: (
+		desktop: 21.5rem, //- map-deep-get($lci-tile-map, height, desktop)
+		tablet: 16.3rem, //- map-deep-get($lci-tile-map, height, tablet)
+		mobile: 14.3rem //- map-deep-get($lci-tile-map, height, mobile)
+	),
+	gap: (
+		all: 1rem //- map-deep-get($lci-tile-map, gap, all)
+	),
+	aspect-ratio: (
+		game-tile: 1.4, //- map-deep-get($lci-tile-map, aspect-ratio, game-tile)
+		rooms-tile: 1, //- map-deep-get($lci-tile-map, aspect-ratio, rooms-tile)
+	),
+	radius: .5rem, //- map-get($lci-tile-map, radius)
+	z-index: (
+		negative: -1, //- map-deep-get($lci-tile-map, z-index, negative)
+		reset: 0, //- map-deep-get($lci-tile-map, z-index, reset)
+		game-image: 0, //- map-deep-get($lci-tile-map, z-index, game-image)
+		badges: 2, //- map-deep-get($lci-tile-map, z-index, badges)
+		overlay: 1 //- map-deep-get($lci-tile-map, z-index, overlay)
+	)
+);

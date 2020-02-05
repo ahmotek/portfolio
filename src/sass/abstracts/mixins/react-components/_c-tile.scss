@@ -1,0 +1,31 @@
+// =========================================================================
+//  GAME TILE COMPONENT MIXINS
+// =========================================================================
+
+//- 
+@mixin c-tile__buttons--structure($buttons-amount) {
+  //- buttons parent
+  position: absolute;
+  bottom: $lci-basic-unit;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: calc(100% - #{$lci-basic-unit * 2});
+
+  //- selects button element
+  & > * {
+      display: inline-block;
+      width: calc(100% / #{$buttons-amount} - #{$lci-basic-unit / 2});
+      font-size: map-deep-get($lci-tile__button-map, font-size, desktop);
+      font-weight: map-get($lci-tile__button-map, font-weight);
+      line-height: map-deep-get($lci-tile__button-map, height, desktop);
+      text-align: center;
+      border-radius: map-get($lci-tile__button-map, radius);
+      cursor: pointer;
+
+      @include respond-to(mobile-tablet) {
+          font-size: map-deep-get($lci-tile__button-map, font-size, mobile-tablet);
+          line-height: map-deep-get($lci-tile__button-map, height, mobile-tablet);
+      }
+  }
+}

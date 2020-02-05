@@ -1,7 +1,11 @@
 //- Group Variables import
 @import 'variables/global',
         'variables/colors',
-        'variables/fonts', 
-        'variables/include-media-config';
+        'variables/fonts';
 
-        // 'variables/media-queries';
+//- variables for vendor
+@import 'variables/vendor/include-media-config';
+
+//- variables for react-components
+@import 'variables/react-components/c-icon/c-icon',
+        'variables/react-components/c-tile/c-tile';

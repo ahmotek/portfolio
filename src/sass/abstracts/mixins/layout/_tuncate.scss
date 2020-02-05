@@ -1,0 +1,10 @@
+// =========================================================================
+//  TRUNCATE MIXIN
+// =========================================================================
+//- Ellipsis behaviour if title has more than 2 lines length > chrome only
+@mixin truncate($value) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $value;
+  -webkit-box-orient: vertical;
+}
