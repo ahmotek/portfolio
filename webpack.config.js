@@ -37,7 +37,7 @@ module.exports = {
   // Path to your entry point. From this file Webpack will begin his work
   entry: {
     app: './src/js/app.js',
-    print: './src/js/print.js',
+    // print: './src/js/print.js',
   },
 
   output: {
@@ -140,9 +140,11 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      // template: path.resolve(projectRoot, '', 'index.html')
-    }),
+    new HtmlWebpackPlugin(), // Generates default index.html
+    // new HtmlWebpackPlugin({  // Also generate a test.html
+    //   filename: 'html/c-tile.html',
+    //   template: 'src/html/c-tile.html'
+    // }),
     new MiniCssExtractPlugin({
       filename: "main.css"
     })
