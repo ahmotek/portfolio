@@ -15,14 +15,15 @@ $max-width: 480px !default;
 ///
 /// Creates a list of global breakpoints
 ///
-/// @example scss - Creates a single breakpoint with the label `phone`
-///  $breakpoints: ('phone': 480px);
+/// @example scss - Creates a single breakpoint with the label `mobile`
+/// $breakpoints: ('mobile': 480px);
 ///
 $breakpoints: (
-  'phone': 640px,
+  'mobile': 640px,
   'tablet': 768px,
   'laptop': 1024px,
-  'desktop': 1280px
+  'desktop': 1280px, 
+  'desktop-xlarge': 1440px
 ) !default;
 
 ///

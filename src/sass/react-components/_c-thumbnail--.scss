@@ -1,0 +1,697 @@
+// //- # TILE COMPONENT (c-thumbnail--galaBingo - where galaBingo is the thumbnail type)
+
+// //- ## GALA BINGO TILE COMPONENT
+
+// /**
+//   * Thumbnail aspect-ratio changes according to its type:
+//   * 1. Type Game has an aspect-ratio of 1.4
+//   * 2. Type Rooms has an aspect-ratio of 1
+//   * 
+//   * Type Game size behaves differently according to its parent layout: 
+//   * 1. Thumbnail Grid Layout - with a fluid responsive behaviour;
+//   * 2. Carousel Layout - with a fixed width by screen range.
+//   *
+//   * And both layout type can be used in different main functional components:
+//   * 1. Bonus Message, a drawer popup with a Carousel Layout component;
+//   * 2. Search popup with both a Thumbnail Grid Layout component (as game results are displayed, per sections) and a Carousel component (as suggested games are displayed).
+//   *
+//   * So if we are talking about Fluid layout as for the Thumbnail Grid Layout component, sizes per column would be something like:
+//   * * Thumbnail Grid Layout component % / columns val: *
+//   * ** Desktop x-large (min-width: 1441px): 16.66% / 6 cols; **
+//   * ** Desktop (min-width: 1281px) and (max-width: 1440px): 20% / 5 cols; **
+//   * ** Tablet Portrait (min-width: 768px) and (max-width: 1280px) and (orientation: portrait): 33.33% / 3 cols; **
+//   * ** Tablet Landscape (min-width: 768px) and (max-width: 1280px) and (orientation: landscape): 25% / 4 cols; **
+//   * ** Mobile Portrait (max-width: 767px) and (orientation: portrait): 50% / 2 cols; **
+//   * ** Mobile Landscape (max-width: 767px) and (orientation: landscape): 33.33% / 3 cols; **
+//   *
+//   * But for the sake of this demo, we will just set a fixed width instead of dealing with fluid behaviours:
+//   * * Thumbnail component pixels / width: *
+//   * ** Desktop: 300px; **
+//   * ** Tablet: 227px; **
+//   * ** Mobile: 200px; **
+//   * 
+//   * 
+//   **/
+
+// .c-thumbnail-container {
+//   margin: 0 auto;
+//   font-family: $thumbnail-font-stack;
+//   font-size: var(--reset-font);
+
+//   //- Desktop
+//   @include media("screen", ">=desktop") {
+//     --reset-font: 1rem;
+//     width: calc(#{map-deep-get($c-thumbnail--map, width, desktop)} + #{map-deep-get($c-thumbnail--map, gap, all)});
+//   }
+  
+//   //- Tablet
+//   @include media("screen", ">=phone", "<desktop") {
+//     --reset-font: 7.5666px; // to avoid --thumb-width: 22.7em = 227px
+//     width: calc(#{map-deep-get($c-thumbnail--map, width, tablet)} + #{map-deep-get($c-thumbnail--map, gap, all)});
+//   }
+
+//   //- Mobile
+//   @include media("screen", "<phone") {
+//     --reset-font: 6.6666px;// to avoid --thumb-width: 20em = 200px
+//     width: calc(#{map-deep-get($c-thumbnail--map, width, mobile)} + #{map-deep-get($c-thumbnail--map, gap, all)});
+//   }
+// }
+
+// .c-thumbnail {
+//   position: relative;
+//   margin-right: #{map-deep-get($c-thumbnail--map, gap, all) / 2};
+//   margin-left: #{map-deep-get($c-thumbnail--map, gap, all) / 2};
+//   cursor: pointer;
+
+//   .c-icon {
+//     padding-right: 0;
+//   }
+
+//   @media (hover: hover) and (pointer: fine) {
+//     &:hover {
+//       .c-thumbnail__overlay {
+//         opacity: 1;
+//         visibility: visible;
+//         border-radius: #{map-get($c-thumbnail--map, radius) - 0.1};
+
+//         @include media("screen", ">laptop") {
+//           // @include respond-to(desktop) {
+//           z-index: map-deep-get($c-thumbnail--map, z-index, overlay);
+//         }
+
+//         @include media("screen", "<=laptop") {
+//           // @include respond-to(mobile-tablet) {
+//           z-index: #{map-deep-get($c-thumbnail--map, z-index, overlay) + 1};
+//         }
+//       }
+//     }
+//   }
+
+//   //- .c-thumbnail inside .c-thumbnail-grid component
+//   .c-thumbnail-grid & {
+//     margin-right: 0;
+//     margin-left: 0;
+//   }
+
+//   //- .c-thumbnail inside .c-bonus-message component
+//   .c-bonus-message:not(.c-bonus-message--accepted) & {
+//     pointer-events: none;
+
+//     &:before,
+//     &:after {
+//       content: "";
+//       position: absolute;
+//     }
+
+//     &:before {
+//       top: 0;
+//       right: 0;
+//       bottom: 0;
+//       left: 0;
+//       background-color: map-get($c-thumbnail__bonus-message, lock-overlay-color);
+//       border-radius: map-get($c-thumbnail-jackpot--map, radius);
+//       z-index: 3;
+//     }
+
+//     &:after {
+//       display: block;
+//       top: 50%;
+//       left: 50%;
+//       width: 100%;
+//       height: 100%;
+//       background: url($svg-data+$padlock) no-repeat center center;
+//       background-size: 25%;
+//       transform: translate(-50%, -50%);
+//       z-index: 4;
+//     }
+//   }
+
+//   @media (hover: hover) and (pointer: fine) {
+//     &:hover {
+//       .c-icon {
+//         @include box-shadow-reset;
+//       }
+
+//       .c-thumbnail__badges-row {
+//         animation: fadeIn 0.25s;
+//         transform: translateY(-5rem);
+
+//         .c-user-panel & {
+//           transform: translateY(-4.5rem) translateX(0.1rem) scale(0.8);
+//           transform-origin: bottom left;
+//         }
+//       }
+
+//       .c-thumbnail__badge {
+//         &--hot {
+//           margin-left: -#{$c-basic-unit * 0.6};
+
+//           & + .c-thumbnail__badge--jackpot {
+//             margin-left: -#{$c-basic-unit / 2};
+//           }
+//         }
+
+//         &--jackpot {
+//           margin-left: #{$c-basic-unit / 2};
+//         }
+//       }
+//     }
+//   }
+
+//   //- .c-thumbnail__cover
+//   &__cover {
+//     position: relative;
+//     padding-top: calc(100% / #{map-deep-get($c-thumbnail--map, aspect-ratio, game-thumbnail)});
+
+//     .bingo-rooms-games & {
+//       padding-top: calc(100% / #{map-deep-get($c-thumbnail--map, aspect-ratio, rooms-thumbnail)});
+//     }
+
+//     .c-thumbnail-carouslider & {
+//       width: map-deep-get($c-thumbnail--map, width, desktop);
+
+//       //    @include respond-to(tablet) {
+//       @include media("screen", ">phone", "<=laptop") {
+//         width: map-deep-get($c-thumbnail--map, width, tablet);
+//       }
+
+//       //    @include respond-to(mobile) {
+//       @include media("screen", "<=phone") {
+//         width: map-deep-get($c-thumbnail--map, width, mobile);
+//       }
+//     }
+
+//     .c-user-panel & {
+//       @include fluid-type(width, map-get($breakpoints, "phone"), map-get($breakpoints, "laptop"), 130px, 200px);
+
+//       @include fluid-type(width, map-get($breakpoints, "laptop"), map-get($breakpoints, "desktop"), 200px, 260px);
+
+//       @include media("screen", "<=phone") {
+//         //   @include respond-to(mobile) {
+//         width: map-get($c-user-panel--thumbnail-width--map, mobile);
+//       }
+//     }
+//   }
+
+//   //- .c-thumbnail__game-image
+//   &__game-image {
+//     overflow: hidden;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     border-radius: map-get($c-thumbnail--map, radius);
+//     z-index: map-deep-get($c-thumbnail--map, z-index, game-image);
+
+//     .c-image {
+//       position: absolute;
+//       top: 50%;
+//       left: 50%;
+//       width: inherit;
+//       min-width: 100%;
+//       min-height: 100%;
+//       transform: translate(-50%, -50%);
+//       user-select: none;
+
+//       .bingo-rooms-games & {
+//         width: auto;
+//         height: 100%;
+//       }
+//     }
+//   }
+
+//   //- .c-thumbnail__extras contains info and favorite icons
+//   &__extras {
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     display: flex;
+//     flex-direction: row;
+//     padding-top: $c-basic-unit;
+//     padding-right: #{$c-basic-unit / 2};
+//     z-index: map-deep-get($c-thumbnail--map, z-index, badges);
+
+//     &:empty {
+//       display: none;
+//     }
+
+//     //   @include respond-to(mobile-tablet) {
+//     @include media("screen", "<=laptop") {
+//       html.desktop & {
+//         z-index: #{map-deep-get($c-thumbnail--map, z-index, badges) + 1};
+//       }
+//     }
+
+//     //   @include respond-to(tablet) {
+//     @include media("screen", ">phone", "<=laptop") {
+//       padding-right: #{$c-basic-unit / 2 + $c-basic-unit / 4};
+
+//       .c-user-panel & {
+//         padding-top: #{$c-basic-unit / 2 + $c-basic-unit / 4};
+//         padding-right: #{$c-basic-unit / 2};
+//       }
+//     }
+
+//     //   @include respond-to(mobile) {
+//     @include media("screen", "<=phone") {
+//       padding-top: #{$c-basic-unit / 2};
+//       padding-right: #{$c-basic-unit / 4};
+//     }
+
+//     //- Hide info-icon + favorites icon if c-thumbnail is rendered inside BCM - .c-bonus-message
+//     .c-bonus-message & {
+//       display: none;
+//     }
+
+//     .c-user-panel & {
+//       //   @include respond-to(tablet-portrait) {
+//       @include media("screen", ">phone", "<=laptop", "portrait") {
+//         padding-top: #{$c-basic-unit / 2};
+//         padding-right: #{$c-basic-unit / 4};
+//       }
+//     }
+//   }
+
+//   //- .c-thumbnail__icon
+//   &__icon {
+//     padding-right: map-deep-get($c-thumbnail__icons-map, gap, desktop);
+//     padding-left: map-deep-get($c-thumbnail__icons-map, gap, desktop);
+//     font-size: map-deep-get($c-thumbnail__icons-map, icon-size, not-mobile);
+
+//     //   @include respond-to(mobile-tablet) {
+//     @include media("screen", "<=laptop") {
+//       padding-right: map-deep-get($c-thumbnail__icons-map, gap, mobile-tablet);
+//       padding-left: map-deep-get($c-thumbnail__icons-map, gap, mobile-tablet);
+//     }
+
+//     //   @include respond-to(tablet) {
+//     @include media("screen", ">phone", "<=laptop") {
+//       .c-user-panel & {
+//         font-size: map-deep-get($c-thumbnail__icons-map, icon-size, tablet--user-panel);
+
+//         //   @include respond-to(portrait) {
+//         @include media("screen", "portrait") {
+//           font-size: map-deep-get($c-thumbnail__icons-map, icon-size, mobile--user-panel);
+//         }
+//       }
+//     }
+
+//     //   @include respond-to(mobile) {
+//     @include media("screen", "<=phone") {
+//       font-size: map-deep-get($c-thumbnail__icons-map, icon-size, mobile--carousel);
+
+//       .c-thumbnail-grid & {
+//         font-size: map-deep-get($c-thumbnail__icons-map, icon-size, mobile--grid);
+//       }
+
+//       .c-user-panel & {
+//         font-size: map-deep-get($c-thumbnail__icons-map, icon-size, mobile--user-panel);
+//       }
+//     }
+
+//     .c-icon {
+//       @include box-shadow($background-color: $white);
+//       color: map-deep-get($c-thumbnail__icons-map, color, default);
+//       cursor: pointer;
+
+//       @media (hover: hover) and (pointer: fine) {
+//         &:hover {
+//           color: map-deep-get($c-thumbnail__icons-map, color, hover);
+//         }
+//       }
+//     }
+
+//     //- .c-thumbnail__icon--info
+//     &--info {
+//       //- TODO: component should render info-icon on devices only. Until then, we hide it on desktop.
+//       //   @include respond-to(desktop) {
+//       @include media("screen", ">laptop") {
+//         display: none;
+//       }
+
+//       //   @include respond-to(mobile-tablet) {
+//       @include media("screen", "<=laptop") {
+//         html.desktop & {
+//           display: none;
+//         }
+//       }
+
+//       .c-icon {
+//         fill: map-deep-get($c-thumbnail__icons-map, color, fill);
+//       }
+//     }
+
+//     //- .c-thumbnail__icon--favorite
+//     &--favorite {
+//       //- only when favorite icon is pined, .c-icon .c-icon__svg.is-favorite
+//       .is-favorite {
+//         color: map-deep-get($c-thumbnail__icons-map, color, active);
+//       }
+//     }
+//   }
+
+//   //- wraps Hot, Jackpot, Exclusive and New
+//   //- .c-thumbnail__badges-row
+//   &__badges-row {
+//     position: absolute;
+//     bottom: 0;
+//     width: 100%;
+//     font-size: 0;
+//     padding: #{$c-basic-unit} #{$c-basic-unit} #{$c-basic-unit} #{$c-basic-unit / 2};
+//     z-index: map-deep-get($c-thumbnail--map, z-index, badges);
+
+//     &:empty {
+//       display: none;
+//     }
+
+//     //   @include respond-to(mobile) {
+//     @include media("screen", "<=phone") {
+//       padding: #{$c-basic-unit / 2} #{$c-basic-unit / 2} #{$c-basic-unit / 2} #{$c-basic-unit / 4};
+//     }
+
+//     .c-bonus-message:not(.c-bonus-message--accepted) & {
+//       display: none;
+//     }
+//   }
+
+//   //- .c-thumbnail__badge
+//   &__badge {
+//     position: relative;
+//     display: inline-block;
+//     font-size: map-deep-get($c-thumbnail__icons-map, icon-size, not-mobile);
+//     line-height: map-deep-get($c-thumbnail__icons-map, badge-height, not-mobile);
+
+//     //   @include respond-to(tablet) {
+//     @include media("screen", ">phone", "<=laptop") {
+//       .c-user-panel & {
+//         font-size: map-deep-get($c-thumbnail__icons-map, icon-size, tablet--user-panel);
+//         line-height: map-deep-get($c-thumbnail__icons-map, badge-height, tablet--user-panel);
+//       }
+//     }
+
+//     //   @include respond-to(mobile) {
+//     @include media("screen", "<=phone") {
+//       font-size: map-deep-get($c-thumbnail__icons-map, icon-size, mobile--carousel);
+//       line-height: map-deep-get($c-thumbnail__icons-map, badge-height, mobile--carousel);
+
+//       .c-thumbnail-grid &,
+//       .c-user-panel & {
+//         vertical-align: bottom;
+//       }
+
+//       .c-thumbnail-grid & {
+//         font-size: map-deep-get($c-thumbnail__icons-map, icon-size, mobile--grid);
+//         line-height: map-deep-get($c-thumbnail__icons-map, badge-height, mobile--grid);
+//       }
+
+//       .c-user-panel & {
+//         font-size: map-deep-get($c-thumbnail__icons-map, icon-size, mobile--user-panel);
+//         line-height: map-deep-get($c-thumbnail__icons-map, badge-height, mobile--user-panel);
+//       }
+//     }
+
+//     &:not(.c-thumbnail__badge--hot):not(.c-thumbnail__badge--jackpot) {
+//       padding-right: map-deep-get($c-thumbnail__icons-map, gap, desktop);
+//       padding-left: map-deep-get($c-thumbnail__icons-map, gap, desktop);
+
+//       //   @include respond-to(mobile-tablet) {
+//       @include media("screen", "<=laptop") {
+//         padding-right: map-deep-get($c-thumbnail__icons-map, gap, mobile-tablet);
+//         padding-left: map-deep-get($c-thumbnail__icons-map, gap, mobile-tablet);
+//       }
+//     }
+
+//     //- ### Modifiers for .c-thumbnail__badge
+//     //- .c-thumbnail__badge--hot
+//     &--hot {
+//       position: relative;
+//       margin-left: -#{$c-basic-unit * 1.6};
+//       margin-bottom: -#{$c-basic-unit / 2};
+//       font-size: map-deep-get($c-thumbnail__icons-map, hot-icon-size, not-mobile);
+//       pointer-events: none;
+
+//       & + .c-thumbnail__badge--jackpot {
+//         padding-left: #{$c-basic-unit / 2};
+
+//         &:before {
+//           content: "";
+//           position: absolute;
+//           bottom: 0;
+//           left: -#{map-deep-get($c-thumbnail__icons-map, hot-icon-size, not-mobile)};
+//           width: map-deep-get($c-thumbnail__icons-map, badge-height, not-mobile);
+//           height: map-deep-get($c-thumbnail__icons-map, badge-height, not-mobile);
+//           background-color: map-get($c-thumbnail-jackpot--map, background-color);
+//           z-index: -1;
+//         }
+//       }
+
+//       //   @include respond-to(tablet) {
+//       @include media("screen", ">phone", "<=laptop") {
+//         .c-user-panel & {
+//           margin-left: -#{$c-basic-unit * 1.4};
+//           font-size: map-deep-get($c-thumbnail__icons-map, hot-icon-size, tablet--user-panel);
+
+//           & + .c-thumbnail__badge--jackpot {
+//             &:before {
+//               left: -#{map-deep-get($c-thumbnail__icons-map, hot-icon-size, tablet--user-panel)};
+//               width: map-deep-get($c-thumbnail__icons-map, badge-height, tablet--user-panel);
+//               height: map-deep-get($c-thumbnail__icons-map, badge-height, tablet--user-panel);
+//             }
+//           }
+//         }
+//       }
+
+//       //   @include respond-to(mobile) {
+//       @include media("screen", "<=phone") {
+//         margin-left: -#{$c-basic-unit * 1.2};
+//         margin-bottom: -#{$c-basic-unit / 2};
+//         font-size: map-deep-get($c-thumbnail__icons-map, hot-icon-size, mobile--carousel);
+
+//         & + .c-thumbnail__badge--jackpot {
+//           margin-left: -#{$c-basic-unit / 4};
+
+//           &:before {
+//             left: -#{$c-basic-unit * 1.5};
+//             width: map-deep-get($c-thumbnail__icons-map, badge-height, mobile--carousel);
+//             height: map-deep-get($c-thumbnail__icons-map, badge-height, mobile--carousel);
+//           }
+//         }
+
+//         .c-thumbnail-grid & {
+//           font-size: map-deep-get($c-thumbnail__icons-map, hot-icon-size, mobile--grid);
+//           margin-bottom: -0.1rem;
+
+//           & + .c-thumbnail__badge--jackpot {
+//             padding-left: #{$c-basic-unit / 4};
+
+//             &:before {
+//               left: -#{$c-basic-unit};
+//               width: #{map-deep-get($c-thumbnail__icons-map, badge-height, mobile--grid) - 0.75rem};
+//               height: map-deep-get($c-thumbnail__icons-map, badge-height, mobile--grid);
+//             }
+//           }
+//         }
+
+//         .c-user-panel & {
+//           font-size: map-deep-get($c-thumbnail__icons-map, hot-icon-size, mobile--user-panel);
+//           margin-bottom: -0.1rem;
+
+//           & + .c-thumbnail__badge--jackpot {
+//             padding-left: #{$c-basic-unit / 4};
+
+//             &:before {
+//               left: -#{$c-basic-unit};
+//               width: #{map-deep-get($c-thumbnail__icons-map, badge-height, mobile--user-panel) - 0.75rem};
+//               height: map-deep-get($c-thumbnail__icons-map, badge-height, mobile--user-panel);
+//             }
+//           }
+//         }
+//       }
+//     }
+
+//     //- .c-thumbnail__badge--jackpot
+//     &--jackpot {
+//       min-width: map-deep-get($c-thumbnail-jackpot--map, width, desktop);
+//       margin-left: -#{$c-basic-unit / 2};
+//       padding-right: map-deep-get($c-thumbnail__icons-map, gap, desktop);
+
+//       .c-user-panel & {
+//         & ~ .c-thumbnail__badge {
+//           display: none;
+//         }
+//       }
+
+//       //   @include respond-to(mobile-tablet) {
+//       @include media("screen", "<=laptop") {
+//         padding-right: map-deep-get($c-thumbnail__icons-map, gap, mobile-tablet);
+//       }
+
+//       //   @include respond-to(tablet) {
+//       @include media("screen", ">phone", "<=laptop") {
+//         min-width: map-deep-get($c-thumbnail-jackpot--map, width, tablet);
+//       }
+
+//       //   @include respond-to(mobile) {
+//       @include media("screen", "<=phone") {
+//         min-width: map-deep-get($c-thumbnail-jackpot--map, width, mobile--carousel);
+//         margin-left: -#{$c-basic-unit / 4};
+
+//         .c-thumbnail-grid & {
+//           min-width: map-deep-get($c-thumbnail-jackpot--map, width, mobile--grid);
+//         }
+//       }
+//     }
+
+//     //- .c-thumbnail__badge--exclusive
+//     // &--exclusive {
+
+//     // }
+
+//     //- .c-thumbnail__badge--new
+//     // &--new {
+
+//     // }
+
+//     //- Games Notification mark
+//     //- .c-thumbnail__badge--highlighted - exists only with .c-thumbnail__badge--new
+//     &--highlighted {
+//       &:after {
+//         content: "";
+//         position: absolute;
+//         top: map-deep-get($content-notification--structure, c-thumbnail--badge, not-mobile-offset-position);
+//         left: #{map-deep-get($c-thumbnail__icons-map, gap, desktop) +
+//           map-deep-get($content-notification--structure, c-thumbnail--badge, not-mobile-offset-position)};
+//         width: map-deep-get($content-notification--structure, c-thumbnail--badge, not-mobile-size);
+//         height: map-deep-get($content-notification--structure, c-thumbnail--badge, not-mobile-size);
+//         background-color: map-get($content-notification--color, primary);
+//         border: 1px solid map-get($content-notification--color, c-thumbnail--border);
+//         border-radius: map-deep-get($content-notification--structure, c-thumbnail--badge, general-radius);
+
+//         //   @include respond-to(tablet) {
+//         @include media("screen", ">phone", "<=laptop") {
+//           left: #{map-deep-get($c-thumbnail__icons-map, gap, mobile-tablet) +
+//             map-deep-get($content-notification--structure, c-thumbnail--badge, not-mobile-offset-position)};
+
+//           .c-thumbnail-grid & {
+//             left: #{map-deep-get($c-thumbnail__icons-map, gap, mobile-tablet) +
+//               map-deep-get($content-notification--structure, c-thumbnail--badge, not-mobile-offset-position)};
+//           }
+//         }
+
+//         //   @include respond-to(mobile) {
+//         @include media("screen", "<=phone") {
+//           top: map-deep-get($content-notification--structure, c-thumbnail--badge, mobile-offset-position);
+//           left: #{map-deep-get($c-thumbnail__icons-map, gap, mobile-tablet) +
+//             map-deep-get($content-notification--structure, c-thumbnail--badge, mobile-offset-position)};
+//           width: map-deep-get($content-notification--structure, c-thumbnail--badge, mobile-size--carousel);
+//           height: map-deep-get($content-notification--structure, c-thumbnail--badge, mobile-size--carousel);
+
+//           .c-thumbnail-grid & {
+//             top: 0;
+//             width: map-deep-get($content-notification--structure, c-thumbnail--badge, mobile-size--grid);
+//             height: map-deep-get($content-notification--structure, c-thumbnail--badge, mobile-size--grid);
+//           }
+//         }
+
+//         .portlet-in-viewport & {
+//           animation: fadeZoomIn 0.3s cubic-bezier(0.17, 0.67, 0.7, 1.38) #{map-deep-get(
+//               $content-notification--structure,
+//               c-thumbnail--badge,
+//               animation-delay
+//             )} 1 forwards;
+//         }
+//       }
+//     }
+//   }
+
+//   //- .c-thumbnail__overlay
+//   &__overlay {
+//     opacity: 0;
+//     visibility: hidden;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     padding: 5rem 1rem 1rem;
+//     background-color: transparentize($violet, 0.05);
+//     text-align: left;
+//     border-radius: map-get($c-thumbnail--map, radius);
+//     transition: opacity 0.3s;
+//     z-index: map-deep-get($c-thumbnail--map, z-index, negative);
+
+//     .c-user-panel & {
+//       padding-top: 4.5rem;
+//     }
+//   }
+
+//   //- .c-thumbnail__game-name
+//   &__game-name {
+//     @include truncate(2);
+//     color: map-get($c-thumbnail__game-name-map, color);
+//     font-size: map-get($c-thumbnail__game-name-map, font-size);
+//     font-weight: map-get($c-thumbnail__game-name-map, font-weight);
+//     line-height: map-get($c-thumbnail__game-name-map, line-height);
+
+//     //- If screen in between 1200 and 1500 px, truncate in 1 line only
+//     //   @include respond-to(desktop) {
+//     @include media("screen", ">laptop") {
+//       display: block;
+//       white-space: nowrap;
+//       overflow: hidden;
+//       text-overflow: ellipsis;
+//     }
+//   }
+
+//   //- wraps more-info and play buttons
+//   //- .c-thumbnail__buttons
+//   &__buttons {
+//     @include c-thumbnail__buttons--structure(2);
+
+//     .c-user-panel & {
+//       bottom: 0.5rem;
+//     }
+//   }
+
+//   //- .c-thumbnail__more-info
+//   &__more-info {
+//     @include buttons--skin($background: $yellow, $color: $darkblue);
+
+//     .c-bonus-message__games-carouslider &,
+//     .c-search & {
+//       display: none;
+//     }
+//   }
+
+//   //- .c-thumbnail__play
+//   &__play {
+//     @include buttons--skin($background: $pink, $color: $white);
+
+//     .c-bonus-message__games-carouslider &,
+//     .c-search & {
+//       width: 100%;
+//     }
+//   }
+
+//   //- ### Modifier
+//   //- .c-thumbnail--galaBingo
+//   // &--galaBingo {
+
+//   // }
+
+//   //- .c-thumbnail--loading
+//   &--loading {
+//     background-color: $bright-gray;
+//     border-radius: map-get($c-thumbnail--map, radius);
+//   }
+// }
+
+// @keyframes fadeZoomIn {
+// 	from {
+// 		transform: scale3d(0, 0, 1)
+// 	}
+// 	to {
+// 		transform: scale3d(1, 1, 1)
+// 	}
+// }

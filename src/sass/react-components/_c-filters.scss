@@ -1,0 +1,264 @@
+:root {
+  --reset-font-size: 1rem;
+
+  --base-color: rgb(58, 51, 52);
+  --base-color-darker: rgb(39, 34, 35);
+  --selected-color: rgb(214, 90, 64);
+  --primary-color: rgb(193, 171, 173); // #C35035 - 10% dark from #D65A40 pink
+  --primary-color-lighter: rgb(205, 188, 189);
+  --secondary-color: rgb(227, 227, 221); //  #E3E3DD - 50% lighter from #C7C7BB green
+  --secondary-color-lighter: rgb(244, 244, 241); //  #E3E3DD - 50% lighter from #C7C7BB green
+}
+
+/* 
+## ICON ASSETS (CSS background SVG) 
+example usage: background-image: url($svg-data + $select-arrow);
+*/
+$svg-data: "data:image/svg+xml;charset=UTF-8,";
+$arrow-down: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgb(227, 227, 221)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round"><path d="M2 6 L12 16 L22 6" /></svg>';
+
+$tick: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(58, 51, 52)"><path d="M21.51 7.52L10.38 18.64a1.523 1.523 0 0 1-2.16 0l-5.73-5.73c-.6-.6-.6-1.57 0-2.16.6-.6 1.57-.6 2.16 0L9.3 15.4 19.34 5.36c.6-.6 1.57-.6 2.16 0 .61.59.61 1.56.01 2.16" /></svg>';
+
+/* Reset */
+* {
+  box-sizing: border-box; // makes dimensions to include borders
+}
+
+body {
+  color: var(--base-color);
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+// Component Wrapper
+.wrapper {
+}
+
+// # Block element component: .c-filters (main wrapper)
+.c-filters {
+
+  &__trigger {
+  }
+
+  &__main {
+    display: flex; 
+    flex-direction: column;
+  }
+
+  &__section {
+    display: grid;
+    grid-template-columns: max-content auto;
+  }
+
+  &__title {
+    margin-inline-end: 0.875em;
+    font-size: .875em;
+    font-weight: 800;
+  }
+}
+
+// # Block element component: .c-filter
+.c-filter {
+  margin: 0 auto;
+  font-size: 1em;
+  user-select: none;
+
+  // ## Accepts modifiers: .c-filter--dropdown || .c-filter--inline
+  &--dropdown {
+    width: 10.7143em;
+  }
+
+  &--inline {
+    display: flex;
+    align-items: center;
+    width: 50vw;
+    padding: 1.43em 0;
+    background-color: var(--base-color);
+    overflow-y: auto;
+  }
+}
+
+// # Block element component: .c-radio-button-group
+.c-radio-button-group {
+  // ## Accepts following modifiers: .c-radio-button-group--sort || .c-radio-button-group--filter
+  &--sort {
+    // Relying on c-filter modifier for the purpose of the example
+    .c-filter--dropdown & {
+      display: none;
+      border-inline-start: 0.143em solid var(--secondary-color);
+      border-block-end: 0.143em solid var(--secondary-color);
+      border-inline-end: 0.143em solid var(--secondary-color);
+      border-bottom-right-radius: 0.35em;
+      border-bottom-left-radius: 0.35em;
+      overflow: hidden;
+    }
+
+    .is-checked + & {
+      .c-filter--dropdown & {
+        display: block; // display dropdown menu if --toggle .is-checked
+      }
+    }
+
+    .c-filter--inline & {
+      display: flex;
+    }
+  }
+
+  &--filter {
+    display: flex;
+  }
+}
+
+// # Block element component: .c-radio-button
+.c-radio-button {
+  background-color: var(--base-color);
+
+  &__input {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5714em 0.7143em;
+    white-space: nowrap;
+    color: var(--secondary-color-lighter);
+
+    // Specific Behaviour
+    &::after {
+      .c-radio-button--toggle & {
+        content: "";
+        display: inline-block;
+        width: 0.7143em;
+        height: 0.7143em;
+        margin-inline-start: 0.7143em;
+        background: url($svg-data+$arrow-down) no-repeat;
+        pointer-events: none;
+      }
+
+      .c-radio-button--toggle.is-checked & {
+        transform: rotate(180deg);
+      }
+    }
+
+    .is-checked & {
+      cursor: default;
+    }
+
+    .c-radio-button--filter-icon & {
+      padding: 0;
+      font-size: 1.429em;
+    }
+
+    .c-radio-button--filter-icon.is-checked & {
+      color: var(--selected-color);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      cursor: pointer;
+    }
+  }
+
+  &__text {
+    line-height: 1.43em;
+    pointer-events: none;
+  }
+
+  // ## Accepts following modifiers: .c-radio-button--toggle || .c-radio-button--sort || c-radio-button--filter
+  &--toggle {
+    border: 0.143em solid var(--secondary-color);
+    border-radius: 0.35em;
+    overflow: hidden;
+
+    &.is-checked {
+      background-color: var(--base-color-darker);
+      border-bottom-width: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    // The dropdown box is shown only on .c-filter--dropdown type
+    .c-filter--inline & {
+      display: none;
+    }
+  }
+
+  &--sort,
+  &--filter,
+  &--filter-icon {
+    // be sure parent has inline modifier for the --sort option
+    .c-filter--inline & {
+      position: relative;
+      margin-inline-start: 0.3125em;
+      margin-inline-end: 0.3125em;
+    }
+
+    &.is-checked {
+      &::after {
+        .c-filter--inline & {
+          content: "";
+          position: absolute;
+          display: inline-block;
+          width: 1.07em;
+          height: 1.07em;
+          background: url($svg-data+$tick) center center no-repeat var(--selected-color);
+          background-size: 80%;
+          border: 0.143em solid var(--base-color);
+          border-radius: 50%;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  &--sort,
+  &--filter {
+    &:hover {
+      background-color: var(--base-color-darker);
+    }
+
+    .c-filter--inline & {
+      border: 0.143em solid var(--secondary-color);
+      border-radius: 0.35em;
+    }
+
+    &.is-checked {
+      .c-filter--inline & {
+        background-color: var(--selected-color);
+        border-color: var(--selected-color);
+      }
+
+      &::after {
+        .c-filter--inline & { 
+          top: -0.428em;
+          right: -0.428em;
+        }
+      }
+    }
+  }
+
+  &--sort {
+    .c-filter--dropdown & {
+      border-top: 0.143em solid var(--secondary-color);
+    }
+
+    &.is-checked {
+      .c-filter--dropdown & {
+        display: none;
+      }
+    }
+  }
+
+  &--filter-icon {
+    border-radius: 50%;
+
+    &.is-checked {
+      &::after {
+        top: -0.0714em;
+        right: -0.0714em;
+      }
+    }
+  }
+}

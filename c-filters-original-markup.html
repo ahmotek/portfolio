@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Filter Component</title>
+</head>
+
+<body>
+  <!-- Collpasible and Inline Filter Component -->
+  <!-- Modifiers: --collapsible || --inline -->
+  <div class="c-filters">
+    <!-- HELPER class for collapsible version only: .is-open -->
+    <div class="c-filters__content">
+      <!-- ## c-scroll-list component block with 2 modifiers: 
+            # c-scroll-list--type
+            # c-scroll-list--sort -->
+      <div class="c-scroll-list">
+        <input class="lci-scroll-list__toggle-menu" type="checkbox" id="toggleMenu" name="filter-sort" value="">
+        <label class="lci-scroll-list__toggle-label" for="toggleMenu">
+          <span>Select trigger button</span>
+          <span class="lci-icon lci-scroll-list__icon">icon</span>
+        </label>
+
+        <div class="c-scroll-list__title"></div>
+        <!-- block element component: c-radio-button-group -->
+        <div class="lci-radio-button-group">
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <!-- name attr: 'filter-type' (when under lci-scroll-list--type modifier) || 'filter-sort' (when under lci-scroll-list--sort modifier) -->
+            <input id="filterType1" class="lci-radio-button__input" type="radio" name="filter-type" value="item1"
+              checked>
+            <label class="lci-radio-button__label" for="filterType1">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon1</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <input id="filterType2" class="lci-radio-button__input" type="radio" name="filter-type" value="item2">
+            <label class="lci-radio-button__label" for="filterType2">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon2</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <input id="filterType3" class="lci-radio-button__input" type="radio" name="filter-type" value="item3">
+            <label class="lci-radio-button__label" for="filterType3">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon3</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <input id="filterType4" class="lci-radio-button__input" type="radio" name="filter-type" value="item4">
+            <label class="lci-radio-button__label" for="filterType4">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon4</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <input id="filterType5" class="lci-radio-button__input" type="radio" name="filter-type" value="item5">
+            <label class="lci-radio-button__label" for="filterType5">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon5</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <input id="filterType6" class="lci-radio-button__input" type="radio" name="filter-type" value="item6">
+            <label class="lci-radio-button__label" for="filterType6">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon6</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-filters__footer"></div>
+    </div>
+  </div>
+
+
+  
+  <div class="wrapper">
+    <!-- .c-filters accepts .c-filters--inline || .c-filters--collapsible-->
+    <div class="c-filters">
+      <div class="c-filters__trigger">Filters
+        <span class="c-icon">
+          <svg viewBox="0 0 24 24" class="c-icon__svg">
+            <use xlink:href="#FILTER" x="0" y="0" />
+          </svg>
+        </span>
+      </div>
+      <!-- .c-filter__main helper class for narrow screens: .is-open-->
+      <div class="c-filters__main">
+        <h2 class="c-filters__title">Filter</h2>
+        <section class="c-filters__section">
+          <ul class="c-radio-group c-radio-group--filters">
+            <li class="c-radio-group__item">All</li>
+            <li class="c-radio-group__item">Slots</li>
+            <li class="c-radio-group__item">Games</li>
+            <li class="c-radio-group__item">Jackpots</li>
+            <li class="c-radio-group__item">Gold</li>
+            <li class="c-radio-group__item">Scratch</li>
+            <li class="c-radio-group__item">ITV</li>
+            <li class="c-radio-group__item">90 Balls</li>
+          </ul>
+        </section>
+
+        <h2 class="c-filters__title">Filter (Balls)</h2>
+        <section class="c-filters__section">
+          <ul class="c-radio-group c-radio-group--filters">
+            <li class="c-radio-group__item">
+              <span class="c-icon">
+                <svg viewBox="0 0 24 24" class="c-icon__svg">
+                  <use xlink:href="#ALL-BALLS" x="0" y="0" />
+                </svg>
+              </span>
+            </li>
+            <li class="c-radio-group__item">
+              <span class="c-icon">
+                <svg viewBox="0 0 24 24" class="c-icon__svg">
+                  <use xlink:href="#40-BALLS" x="0" y="0" />
+                </svg>
+              </span>
+            </li>
+            <li class="c-radio-group__item">
+              <span class="c-icon">
+                <svg viewBox="0 0 24 24" class="c-icon__svg">
+                  <use xlink:href="#50-BALLS" x="0" y="0" />
+                </svg>
+              </span>
+            </li>
+            <li class="c-radio-group__item">
+              <span class="c-icon">
+                <svg viewBox="0 0 24 24" class="c-icon__svg">
+                  <use xlink:href="#50-BALLS" x="0" y="0" />
+                </svg>
+              </span>
+            </li>
+            <li class="c-radio-group__item">
+              <span class="c-icon">
+                <svg viewBox="0 0 24 24" class="c-icon__svg">
+                  <use xlink:href="#75-BALLS" x="0" y="0" />
+                </svg>
+              </span>
+            </li>
+            <li class="c-radio-group__item">
+              <span class="c-icon">
+                <svg viewBox="0 0 24 24" class="c-icon__svg">
+                  <use xlink:href="#80-BALLS" x="0" y="0" />
+                </svg>
+              </span>
+            </li>
+            <li class="c-radio-group__item">
+              <span class="c-icon">
+                <svg viewBox="0 0 24 24" class="c-icon__svg">
+                  <use xlink:href="#90-BALLS" x="0" y="0" />
+                </svg>
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        <h2 class="c-filters__title">Sort</h2>
+        <section class="c-filters__section">
+          <ul class="c-radio-group c-radio-group--filters">
+            <li class="c-radio-group__item">Most Popular</li>
+            <li class="c-radio-group__item">New</li>
+            <li class="c-radio-group__item">Jackpot Size</li>
+            <li class="c-radio-group__item">A-Z</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG declaration -->
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide">
+    <symbol id="FILTER" viewBox="0 0 24 24">
+      <path
+        d="M22.9 1.6c-.1-.4-.4-.6-.8-.6H1.9c-.4 0-.7.2-.8.6s-.1.7.1 1l7.9 10.3v6.9c0 .4.2.7.5.9l4 2.2c.2.1.3.1.4.1.2 0 .3 0 .5-.1.3-.2.4-.5.4-.8v-9.2l7.9-10.3c.2-.3.3-.7.1-1zm-9.6 10.3c-.1.2-.2.4-.2.6v7.9l-2.3-1.2v-6.7c0-.2-.1-.5-.2-.6L3.8 3h16.4l-6.9 8.9z" />
+    </symbol>
+    <symbol id="ALL-BALLS" viewBox="0 0 24 24">
+      <path
+        d="M12 1C5.94 1 1 5.93 1 12s4.93 11 11 11c6.06 0 11-4.93 11-11S18.07 1 12 1zm0 20.86c-5.44 0-9.86-4.42-9.86-9.86S6.56 2.14 12 2.14s9.86 4.42 9.86 9.86-4.42 9.86-9.86 9.86z" />
+      <path
+        d="M12 4.27c-4.26 0-7.73 3.47-7.73 7.73s3.47 7.73 7.73 7.73 7.73-3.47 7.73-7.73S16.27 4.27 12 4.27zm0 14.15c-3.54 0-6.42-2.88-6.42-6.42S8.46 5.58 12 5.58s6.42 2.88 6.42 6.42-2.88 6.42-6.42 6.42z" />
+      <path
+        d="M12.29 12.99c-.1-.25-.21-.51-.32-.78-.12-.27-.23-.54-.33-.79-.11-.25-.21-.48-.3-.68-.09-.2-.16-.35-.22-.44-.01 0-.03-.01-.06-.03-.03-.02-.07-.04-.12-.06s-.1-.04-.16-.05c-.06-.02-.12-.02-.19-.02-.17 0-.3.03-.4.09-.1.06-.19.17-.26.33-.13.3-.27.61-.41.94-.14.32-.27.64-.4.95-.13.31-.25.6-.36.88s-.21.52-.28.73h.96c.05-.13.1-.27.15-.4.05-.13.1-.27.16-.43h1.62c.07.18.13.33.18.47.05.13.09.25.13.36h1.02c-.03-.08-.08-.22-.16-.41-.07-.2-.15-.42-.25-.66zm-2.21-.6c.04-.11.09-.22.13-.34.05-.12.09-.24.14-.36.04-.12.09-.22.12-.32.04-.09.07-.17.09-.22l.09.22c.04.1.08.21.13.32.04.12.09.24.14.36.05.13.09.24.13.34h-.97zM13.53 9.95c-.14 0-.25.03-.34.09s-.13.16-.13.31v3.71h.9v-4.02c-.02-.01-.07-.02-.16-.05a.766.766 0 0 0-.27-.04zM15.1 9.95c-.14 0-.25.03-.34.09-.08.06-.13.16-.13.31v3.71h.9v-4.02c-.02-.01-.08-.02-.16-.05a.766.766 0 0 0-.27-.04z" />
+    </symbol>
+    <symbol id="40-BALLS" viewBox="0 0 24 24">
+      <path
+        d="M12 1C5.94 1 1 5.93 1 12s4.94 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20.86c-5.44 0-9.86-4.42-9.86-9.86S6.57 2.14 12 2.14s9.86 4.42 9.86 9.86-4.42 9.86-9.86 9.86z" />
+      <path
+        d="M11.81 4.27c-4.26 0-7.73 3.47-7.73 7.73s3.47 7.73 7.73 7.73 7.73-3.47 7.73-7.73-3.47-7.73-7.73-7.73zm0 14.15c-3.54 0-6.42-2.88-6.42-6.42s2.88-6.42 6.42-6.42 6.42 2.88 6.42 6.42-2.88 6.42-6.42 6.42z" />
+      <path
+        d="M11.01 12.4h-.06V9.84c-.02-.01-.08-.04-.18-.08s-.25-.06-.47-.06c-.17 0-.33.03-.5.1-.17.07-.33.15-.49.26-.15.12-.31.25-.46.39a5.126 5.126 0 0 0-.7.82c-.09.13-.16.26-.23.4s-.12.28-.16.43c-.04.16-.06.3-.06.45 0 .16.03.29.09.4s.14.2.25.26c.1.07.23.12.37.15s.3.05.46.05h1.01v.89h1.08v-.89h.48c.02-.03.04-.1.08-.2s.05-.21.05-.32c0-.16-.04-.28-.13-.36-.09-.09-.23-.13-.43-.13zm-1.13 0h-.77c-.09 0-.16-.01-.22-.03-.06-.02-.09-.07-.09-.14 0-.08.03-.18.1-.32s.18-.3.33-.49c.09-.11.19-.22.3-.32.11-.1.22-.19.34-.26v1.56h.01zM15.41 10.24a1.67 1.67 0 0 0-.61-.48c-.25-.11-.52-.17-.84-.17-.32 0-.6.06-.84.17s-.45.27-.62.48c-.17.21-.29.46-.38.76s-.12.63-.12 1 .04.71.13 1.01c.08.3.21.55.38.76s.37.37.62.48c.24.11.52.17.84.17.31 0 .59-.06.84-.17.24-.11.45-.27.61-.48.16-.21.29-.46.38-.76s.13-.63.13-1.01c0-.37-.04-.71-.13-1.01-.1-.29-.23-.54-.39-.75zm-.84 2.81c-.15.23-.35.34-.61.34a.68.68 0 0 1-.62-.34c-.15-.23-.22-.57-.22-1.05 0-.47.07-.82.22-1.05.15-.23.35-.34.62-.34.26 0 .47.11.61.34.15.23.22.58.22 1.05 0 .48-.07.82-.22 1.05z" />
+    </symbol>
+    <symbol id="49-BALLS" viewBox="0 0 24 24">
+      <path
+        d="M11.37 12.44h-.06V9.88c-.02-.01-.08-.04-.18-.08s-.25-.06-.47-.06c-.17 0-.33.03-.5.1-.16.07-.32.15-.48.27s-.32.24-.47.38a5.126 5.126 0 0 0-.7.82c-.09.13-.16.26-.23.4a2.5 2.5 0 0 0-.16.43c-.04.15-.06.29-.06.44 0 .16.03.29.09.4s.14.2.25.26c.1.07.23.12.37.15s.3.05.46.05h1.01v.89h1.08v-.89h.48c.02-.03.04-.1.08-.2s.05-.21.05-.32c0-.16-.04-.28-.13-.36-.08-.08-.23-.12-.43-.12zm-1.13 0h-.77c-.09 0-.16-.01-.22-.03-.06-.02-.09-.07-.09-.14 0-.08.03-.18.1-.32s.18-.3.33-.49c.09-.11.19-.22.3-.32.11-.1.22-.19.34-.26l.01 1.56zM15.44 10.09c-.16-.15-.35-.27-.57-.35a2.15 2.15 0 0 0-.73-.12c-.27 0-.51.04-.74.13-.23.08-.42.2-.58.36-.16.15-.29.34-.38.55s-.14.45-.14.71c0 .21.03.4.1.59a1.394 1.394 0 0 0 .79.81c.2.08.42.12.68.12h.08c.03 0 .06-.01.08-.01l-1.11 1.51h1.29l.96-1.3c.11-.14.21-.28.3-.42s.17-.28.24-.43c.07-.14.12-.29.16-.44s.06-.31.06-.47c0-.25-.04-.48-.13-.69-.08-.22-.2-.4-.36-.55zm-.75 1.8c-.14.14-.33.22-.55.22-.23 0-.42-.07-.56-.22a.77.77 0 0 1-.21-.55c0-.23.07-.41.2-.55.14-.14.32-.21.56-.21.23 0 .41.07.55.21s.21.32.21.54c.01.23-.06.42-.2.56z" />
+      <path
+        d="M12 1C5.94 1 1 5.93 1 12s4.94 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20.86c-5.44 0-9.86-4.42-9.86-9.86S6.57 2.14 12 2.14s9.86 4.42 9.86 9.86-4.42 9.86-9.86 9.86z" />
+      <path
+        d="M12 4.27c-4.26 0-7.73 3.47-7.73 7.73s3.47 7.73 7.73 7.73 7.73-3.47 7.73-7.73S16.27 4.27 12 4.27zm0 14.15c-3.54 0-6.42-2.88-6.42-6.42S8.46 5.58 12 5.58s6.42 2.88 6.42 6.42-2.88 6.42-6.42 6.42z" />
+    </symbol>
+    <symbol id="50-BALLS" viewBox="0 0 24 24">
+      <path
+        d="M11.14 11.8c-.13-.14-.3-.24-.51-.32s-.47-.12-.78-.12c-.13 0-.23 0-.32.01a.95.95 0 0 0-.2.02l.02-.67h1.83c.02-.03.04-.1.08-.2s.05-.21.05-.32c0-.16-.04-.28-.13-.36-.08-.08-.23-.12-.43-.12H9.04c-.22 0-.39.05-.49.16-.11.1-.16.26-.17.48l-.07 2.08a.83.83 0 0 1 .2-.05c.09-.02.18-.03.28-.05.1-.02.21-.03.31-.04s.2-.01.29-.01c.21 0 .39.02.52.05.13.03.23.08.3.14.07.06.12.12.14.19s.04.14.04.21c0 .08-.01.15-.04.22s-.07.13-.14.18-.15.1-.26.13c-.11.03-.25.05-.42.05-.13 0-.25-.01-.38-.03a2.662 2.662 0 0 1-.58-.17c-.07-.03-.12-.05-.15-.07l-.41.81c.01.01.06.04.13.08.08.04.18.09.32.14.14.05.31.09.51.13s.44.06.7.06c.29 0 .54-.04.77-.12.23-.08.42-.19.57-.32.15-.14.27-.3.35-.5s.12-.41.12-.65c0-.19-.03-.38-.09-.55a.902.902 0 0 0-.25-.47zM15.48 10.24c-.16-.21-.37-.37-.61-.48s-.52-.17-.84-.17c-.32 0-.6.06-.84.17s-.45.27-.61.48c-.17.21-.29.46-.38.76-.08.3-.13.63-.13 1.01 0 .37.04.71.13 1.01.08.3.21.55.38.76s.37.37.61.48.52.17.84.17c.31 0 .59-.06.84-.17.24-.11.45-.27.61-.48.17-.21.29-.46.38-.76s.13-.63.13-1.01c0-.37-.04-.71-.13-1.01-.09-.3-.22-.55-.38-.76zm-.84 2.81c-.15.23-.35.34-.61.34-.27 0-.47-.11-.62-.34-.15-.23-.22-.57-.22-1.05 0-.47.07-.82.22-1.05.15-.23.35-.34.62-.34.26 0 .47.11.61.34.15.23.22.58.22 1.05 0 .48-.07.82-.22 1.05z" />
+      <path
+        d="M12 1C5.94 1 1 5.93 1 12s4.94 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20.86c-5.44 0-9.86-4.42-9.86-9.86S6.57 2.14 12 2.14s9.86 4.42 9.86 9.86-4.42 9.86-9.86 9.86z" />
+      <path
+        d="M12 4.27c-4.26 0-7.73 3.47-7.73 7.73s3.47 7.73 7.73 7.73 7.73-3.47 7.73-7.73S16.27 4.27 12 4.27zm0 14.15c-3.54 0-6.42-2.88-6.42-6.42S8.46 5.58 12 5.58s6.42 2.88 6.42 6.42-2.88 6.42-6.42 6.42z" />
+    </symbol>
+    <symbol id="75-BALLS" viewBox="0 0 24 24">
+      <path
+        d="M11.21 9.65H8.54c-.02.04-.05.1-.09.2a.88.88 0 0 0-.05.33c0 .16.04.29.13.38s.23.13.44.13h1.6c-.05.13-.13.3-.22.51s-.19.44-.3.69c-.11.24-.22.49-.33.75s-.22.5-.32.72c-.1.22-.18.41-.25.56-.07.16-.11.26-.13.31h1.14l.22-.47c.09-.19.18-.4.28-.63.1-.22.2-.46.31-.7.1-.24.21-.47.3-.68.1-.22.18-.41.25-.59s.13-.32.16-.42c.03-.09.06-.18.08-.26.02-.08.04-.16.04-.23 0-.2-.05-.35-.15-.46-.1-.09-.25-.14-.44-.14zM15.24 11.74c-.13-.14-.3-.24-.51-.32s-.47-.12-.77-.12c-.13 0-.23 0-.32.01-.09 0-.16.01-.2.02l.02-.67h1.82c.02-.03.04-.1.08-.2s.05-.21.05-.32c0-.16-.04-.28-.13-.36s-.23-.12-.43-.12h-1.72c-.22 0-.39.05-.49.16-.1.1-.16.26-.17.48l-.07 2.08a.83.83 0 0 1 .2-.05c.09-.02.18-.03.28-.05.1-.02.21-.03.31-.04.11-.01.2-.01.29-.01.21 0 .39.02.52.05s.23.08.3.14c.07.06.12.12.14.19.03.07.04.14.04.21 0 .08-.01.15-.04.22s-.07.13-.14.18c-.06.05-.15.1-.26.13-.11.03-.25.05-.42.05a2.34 2.34 0 0 1-.71-.11c-.1-.03-.18-.06-.25-.09s-.12-.05-.15-.07l-.41.83c.01.01.06.04.13.08.08.04.18.09.32.14.14.05.31.09.51.13s.44.06.7.06c.29 0 .54-.04.77-.12.23-.08.42-.19.57-.32.15-.14.27-.3.35-.5.08-.19.12-.41.12-.65 0-.19-.03-.38-.09-.55a.816.816 0 0 0-.24-.49z" />
+      <path
+        d="M12 1C5.94 1 1 5.93 1 12s4.94 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20.86c-5.44 0-9.86-4.42-9.86-9.86S6.57 2.14 12 2.14s9.86 4.42 9.86 9.86-4.42 9.86-9.86 9.86z" />
+      <path
+        d="M12 4.27c-4.26 0-7.73 3.47-7.73 7.73s3.47 7.73 7.73 7.73 7.73-3.47 7.73-7.73S16.27 4.27 12 4.27zm0 14.15c-3.54 0-6.42-2.88-6.42-6.42S8.46 5.58 12 5.58s6.42 2.88 6.42 6.42-2.88 6.42-6.42 6.42z" />
+    </symbol>
+    <symbol id="80-BALLS" viewBox="0 0 24 24">
+      <path
+        d="M12 1C5.94 1 1 5.93 1 12s4.94 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20.86c-5.44 0-9.86-4.42-9.86-9.86S6.57 2.14 12 2.14s9.86 4.42 9.86 9.86-4.42 9.86-9.86 9.86z" />
+      <path
+        d="M12 4.27c-4.26 0-7.73 3.47-7.73 7.73s3.47 7.73 7.73 7.73 7.73-3.47 7.73-7.73S16.27 4.27 12 4.27zm0 14.15c-3.54 0-6.42-2.88-6.42-6.42S8.46 5.58 12 5.58s6.42 2.88 6.42 6.42-2.88 6.42-6.42 6.42z" />
+      <path
+        d="M10.94 11.96c.19-.12.34-.27.44-.44.1-.18.14-.36.14-.54 0-.21-.04-.41-.13-.58s-.21-.32-.37-.43c-.16-.12-.35-.21-.57-.27-.22-.07-.47-.1-.74-.1s-.52.03-.74.1c-.22.05-.41.14-.57.26-.16.12-.28.26-.37.43s-.13.36-.13.58c0 .19.05.37.14.54.1.18.24.32.44.44-.23.12-.4.27-.51.46-.11.18-.16.38-.16.58 0 .21.04.41.13.58s.22.32.38.44.37.22.6.28c.24.07.5.1.79.1s.55-.03.79-.1c.24-.06.44-.16.6-.28.16-.12.29-.27.38-.44.09-.17.13-.37.13-.58 0-.2-.06-.4-.17-.58s-.27-.33-.5-.45zm-1.92-1.15c.03-.06.07-.12.13-.16.06-.05.13-.08.23-.11s.2-.04.34-.04c.13 0 .25.01.34.04s.17.07.23.11c.06.05.1.1.13.16s.04.13.04.2c0 .14-.06.26-.17.36-.11.1-.3.15-.56.15s-.45-.05-.56-.15a.475.475 0 0 1-.17-.36.275.275 0 0 1 .02-.2zm1.31 2.51c-.13.1-.33.15-.61.15s-.49-.05-.62-.15a.46.46 0 0 1-.19-.38c0-.15.07-.28.19-.38.13-.1.34-.15.62-.15s.49.05.61.15c.13.1.19.23.19.38 0 .16-.06.28-.19.38zM15.68 10.24c-.16-.21-.37-.37-.61-.48s-.52-.17-.84-.17c-.32 0-.6.06-.84.17s-.45.27-.61.48c-.17.21-.29.46-.38.76-.08.3-.13.63-.13 1.01 0 .37.04.71.13 1.01.08.3.21.55.38.76s.37.37.61.48.52.17.84.17c.31 0 .59-.06.84-.17.24-.11.45-.27.61-.48.17-.21.29-.46.38-.76.09-.3.13-.63.13-1.01 0-.37-.04-.71-.13-1.01-.09-.3-.21-.55-.38-.76zm-.83 2.81c-.15.23-.35.34-.61.34-.27 0-.47-.11-.62-.34-.15-.23-.22-.57-.22-1.05 0-.47.07-.82.22-1.05.15-.23.35-.34.62-.34.26 0 .47.11.61.34.15.23.22.58.22 1.05 0 .48-.07.82-.22 1.05z" />
+    </symbol>
+    <symbol id="90-BALLS" viewBox="0 0 24 24">
+      <path
+        d="M9.68 12.84c-.02 0-.05.01-.08.01h-.08c-.26 0-.49-.04-.68-.12-.2-.08-.36-.19-.49-.33a1.495 1.495 0 0 1-.4-1.07c0-.26.04-.49.14-.71.09-.21.22-.4.38-.55.15-.15.34-.27.57-.36.23-.08.47-.13.74-.13s.51.04.74.12.41.2.57.35c.16.15.28.33.37.54s.13.44.13.69c0 .16-.02.32-.06.47-.04.15-.09.3-.16.44a4.63 4.63 0 0 1-.54.85l-.96 1.3h-1.3l1.11-1.5zm.1-.76c.23 0 .41-.07.55-.22.14-.15.21-.33.21-.55s-.07-.4-.21-.54-.33-.21-.55-.21c-.24 0-.42.07-.56.21s-.2.32-.2.55c0 .22.07.41.21.55.13.14.32.21.55.21zM14.11 14.41c-.32 0-.6-.06-.84-.17s-.45-.27-.61-.48a2.17 2.17 0 0 1-.38-.76c-.08-.3-.13-.63-.13-1.01s.04-.71.13-1.01c.08-.3.21-.55.38-.76s.37-.37.61-.48.52-.17.84-.17c.31 0 .59.06.84.17.24.11.45.27.61.48.17.21.29.46.38.76.09.3.13.63.13 1.01s-.04.71-.13 1.01c-.09.3-.21.55-.38.76-.16.21-.37.37-.61.48-.25.12-.53.17-.84.17zm0-1.02c.26 0 .47-.11.61-.34.15-.23.22-.57.22-1.05 0-.47-.07-.82-.22-1.05a.686.686 0 0 0-.61-.34c-.27 0-.47.11-.62.34-.15.23-.22.58-.22 1.05s.07.82.22 1.05c.14.23.35.34.62.34z" />
+      <path
+        d="M12 1C5.94 1 1 5.93 1 12s4.94 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20.86c-5.44 0-9.86-4.42-9.86-9.86S6.57 2.14 12 2.14s9.86 4.42 9.86 9.86-4.42 9.86-9.86 9.86z" />
+      <path
+        d="M12 4.27c-4.26 0-7.73 3.47-7.73 7.73s3.47 7.73 7.73 7.73 7.73-3.47 7.73-7.73S16.27 4.27 12 4.27zm0 14.15c-3.54 0-6.42-2.88-6.42-6.42S8.46 5.58 12 5.58s6.42 2.88 6.42 6.42-2.88 6.42-6.42 6.42z" />
+    </symbol>
+  </svg>
+</body>
+
+</html>
+
+
+
+
+
+
+<!-- Collpasible and Inline Filter Component -->
+  <!-- Modifiers: --collapsible || --inline -->
+  <div class="c-filters">
+    <!-- HELPER class for collapsible version only: .is-open -->
+    <div class="c-filters__content">
+      <!-- ## c-scroll-list component block with 2 modifiers: 
+            # c-scroll-list--type
+            # c-scroll-list--sort -->
+      <div class="c-scroll-list">
+        <input class="lci-scroll-list__toggle-menu" type="checkbox" id="toggleMenu" name="filter-sort" value="">
+        <label class="lci-scroll-list__toggle-label" for="toggleMenu">
+          <span>Select trigger button</span>
+          <span class="lci-icon lci-scroll-list__icon">icon</span>
+        </label>
+
+        <div class="c-scroll-list__title"></div>
+        <!-- block element component: c-radio-button-group -->
+        <div class="lci-radio-button-group">
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <!-- name attr: 'filter-type' (when under lci-scroll-list--type modifier) || 'filter-sort' (when under lci-scroll-list--sort modifier) -->
+            <input id="filterType1" class="lci-radio-button__input" type="radio" name="filter-type" value="item1"
+              checked>
+            <label class="lci-radio-button__label" for="filterType1">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon1</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <input id="filterType2" class="lci-radio-button__input" type="radio" name="filter-type" value="item2">
+            <label class="lci-radio-button__label" for="filterType2">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon2</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <input id="filterType3" class="lci-radio-button__input" type="radio" name="filter-type" value="item3">
+            <label class="lci-radio-button__label" for="filterType3">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon3</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <input id="filterType4" class="lci-radio-button__input" type="radio" name="filter-type" value="item4">
+            <label class="lci-radio-button__label" for="filterType4">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon4</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <input id="filterType5" class="lci-radio-button__input" type="radio" name="filter-type" value="item5">
+            <label class="lci-radio-button__label" for="filterType5">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon5</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+          <div class="lci-radio-button lci-radio-button-group__item">
+            <input id="filterType6" class="lci-radio-button__input" type="radio" name="filter-type" value="item6">
+            <label class="lci-radio-button__label" for="filterType6">
+              <!-- @Chen - icon has to be a span because labels don't wrap block elements -->
+              <span class="lci-icon lci-radio-button__icon">icon6</span>
+              <span class="lci-radio-button__text">Balls</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-filters__footer"></div>
+    </div>
+  </div>

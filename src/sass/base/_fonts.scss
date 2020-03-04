@@ -1,5 +1,17 @@
 //- This file contains all @font-face declarations.
 @font-face {
-  font-family: OpenSans;
+  font-family: 'Open Sans', sans-serif;
   src: url($font-path + 'OpenSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Overlock', cursive;
+  src: url($font-path + 'Overlock-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Overlock', cursive;
+  src: url($font-path + 'Overlock-Bold.ttf');
+  font-weight: 600;
 }

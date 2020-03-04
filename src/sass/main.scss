@@ -1,6 +1,13 @@
 @charset 'UTF-8';
 
-//- Configuration and helpers - tools and helpers 
+//- John Snook:
+//- 1. Base rules
+//- 2. Layout rules
+//- 3. Modules rules
+//- 4. State rules
+//- 5. Theme rules
+
+//- Configuration and helpers - tools and helpers  
 @import 'abstracts/variables',
         'abstracts/functions',
         'abstracts/mixins',
@@ -14,7 +21,7 @@
 @import 'base/reset',
         'base/base',
         'base/fonts',
-        'base/typography',  
+        'base/typography',
         'base/helpers',
         'base/layout'; 
 
@@ -35,3 +42,8 @@
         'pages/home',
         'pages/contact';
 
+//- React Components styling
+@import 'react-components/examples-ui',
+        'react-components/c-icon',
+        'react-components/c-thumbnail',
+        'react-components/c-filters';

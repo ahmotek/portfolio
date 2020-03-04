@@ -1,0 +1,27 @@
+// =========================================================================
+//  MAPS DEEP-GET FUNCTION
+// =========================================================================
+/// Map deep get
+/// @author Hugo Giraudel
+/// @access public
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Key chain
+/// @return {*} - Desired value
+
+// Usage
+// $your-var: (
+//	layout: (
+//		mobile: XXX,
+//		tablet-portrait: XXX,
+//		tablet:  850px,
+//		desktop: XXX 
+//	)
+//);
+// map-deep-get($your-var, "layout", "tablet"); //- 850px would be the result
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+      $map: map-get($map, $key);
+  }
+  @return $map;
+}

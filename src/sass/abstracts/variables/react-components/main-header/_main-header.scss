@@ -1,0 +1,8 @@
+//- NEW HEADER SIZES for GBS-2468
+//- Header > colors
+$main-header--colors : (
+	primary: $white, //- map-get($main-header--colors, primary);
+	secondary: $yellow, //- map-get($main-header--colors, secondary);
+	tertiary: $resolution-blue, //- map-get($main-header--colors, tertiary);
+	background: $darkblue //- map-get($main-header--colors, background);
+);

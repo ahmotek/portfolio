@@ -1,0 +1,6 @@
+//- ## ICON ASSETS (CSS inline SVG): example usage: background-image: url($svg-data + $arrow-down);
+$svg-data: "data:image/svg+xml;charset=UTF-8,";
+
+$arrow-down: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgb(227, 227, 221)" stroke-linecap="round" stroke-width="3" stroke-linejoin="round"><path d="M2 6 L12 16 L22 6" /></svg>';
+
+$tick: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(58, 51, 52)"><path d="M21.51 7.52L10.38 18.64a1.523 1.523 0 0 1-2.16 0l-5.73-5.73c-.6-.6-.6-1.57 0-2.16.6-.6 1.57-.6 2.16 0L9.3 15.4 19.34 5.36c.6-.6 1.57-.6 2.16 0 .61.59.61 1.56.01 2.16" /></svg>';

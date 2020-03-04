@@ -1,0 +1,71 @@
+:root {
+  /* Colors: */
+  --base-color: rgba(58, 51, 52, 1); // #2B120C - 80% dark from #D65A40 orange
+  --base-color-opacity: rgba(58, 51, 52, 0.5);
+  --primary-color: rgba(
+    193,
+    171,
+    173,
+    1
+  ); // #C35035 - 10% dark from #D65A40 pink
+  --primary-color-lighter: rgba(
+    205,
+    188,
+    189,
+    1
+  ); // #E79C8A - 40% lighter from #D65A40 pink
+  --secondary-color: rgba(
+    227,
+    227,
+    221,
+    1
+  ); //  #E3E3DD - 50% lighter from #C7C7BB green
+  --secondary-color-lighter: rgba(
+    244,
+    244,
+    241,
+    1
+  ); //  #E3E3DD - 50% lighter from #C7C7BB green
+  --secondary-color-opacity: rgba(227, 227, 221, 0.5);
+  
+  --selected-color: rgba(214, 90, 64, 1);
+}
+
+.c-icon,
+[class*="c-icon--"] {
+  /* Allows sizing by changing the icon’s font-size */
+  overflow: hidden;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: auto;
+  fill: currentColor;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  box-sizing: content-box;
+  pointer-events: none;
+}
+
+.c-icon--shape-only {
+  fill: transparent;
+}
+
+.c-icon--colored {
+  color: var(--selected-color);
+  fill: var(--secondary-color);
+}
+
+.c-icon--inverted {
+  color: var(--secondary-color);
+  fill: var(--selected-color);  
+}
+
+.c-icon--bordered {
+  color: transparent;
+  fill: transparent;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-dasharray: 0;
+  stroke: var(--selected-color);
+}

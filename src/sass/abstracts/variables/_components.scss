@@ -1,0 +1,5 @@
+// ## buttons shadow
+$button-box-shadow: (
+	default: 0 .2rem .4rem rgba(0, 0, 0, 0.5), //- map-get($button-box-shadow, default)
+	hover: 0 0 0 rgba(0, 0, 0, 0) //- map-get($button-box-shadow, hover),
+);

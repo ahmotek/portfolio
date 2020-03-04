@@ -1,0 +1,21 @@
+.example-button {
+  &__input {
+    & ~ .example-button__dropdown-text {
+      display: inline;
+    }
+
+    & ~ .example-button__inline-text {
+      display: none;
+    }
+
+    &:checked {
+      & ~ .example-button__dropdown-text {
+        display: none;
+      }
+  
+      & ~ .example-button__inline-text {
+        display: inline;
+      }
+    }
+  }
+}

@@ -45,6 +45,12 @@ module.exports = {
     path: projectRoot
   },
 
+  watch: true,
+
+  watchOptions: {
+    ignored: /node_modules/
+  },
+
   module: {
     rules: [
       {
@@ -142,8 +148,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin(), // Generates default index.html
     // new HtmlWebpackPlugin({  // Also generate a test.html
-    //   filename: 'html/c-tile.html',
-    //   template: 'src/html/c-tile.html'
+    //   filename: 'html/c-thumbnail.html',
+    //   template: 'src/html/c-thumbnail.html'
     // }),
     new MiniCssExtractPlugin({
       filename: "main.css"

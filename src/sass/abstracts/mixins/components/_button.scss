@@ -3,11 +3,13 @@
   background-color: $background;
   color: $color;
 
-  @include respond-to(desktop) {
-      transition: background .3s ease-in-out;
+  // @include respond-to(desktop) {
+    
+  // @include media("screen", ">laptop") {
+  //   transition: background 0.3s ease-in-out;
 
-      &:hover {
-          background-color: mix($background, $white, 70%);
-      }
-  }
+  //   &:hover {
+  //     background-color: mix($background, $white, 70%);
+  //   }
+  // }
 }

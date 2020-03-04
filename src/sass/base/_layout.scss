@@ -14,7 +14,7 @@
   padding-left: $flow-space * 2;
   padding-right: $flow-space * 2;
   
-    @include media('screen', '<=phone') {
+    @include media('screen', '<=mobile') {
       max-width: calc(#{$max-width} - #{$flow-space});
     }
  }

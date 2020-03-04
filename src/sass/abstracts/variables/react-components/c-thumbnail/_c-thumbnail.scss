@@ -1,0 +1,212 @@
+//- TILE COMPONENT variables
+
+
+//- GAME NAME SPECS - rendered only on desktop view
+$c-thumbnail__game-name-map : (
+    color: $white,
+    font-size: 1.8em,
+    font-weight: 600,
+    line-height: 1.4
+);
+
+//- c-TILE ON c-BONUS-MESSAGE COMPOENENT
+$c-thumbnail__bonus-message : (
+    lock-overlay-color: transparentize($dark-slate-blue, .2)
+);
+
+
+
+// # Shared variables c-TILE COMPONENT
+//- $c-thumbnail vars are used on lazy-load component
+$c-thumbnail--map : (
+	width: (
+		desktop: 30rem, //- map-deep-get($c-thumbnail--map, width, desktop)
+		tablet: 22.7rem, //- map-deep-get($c-thumbnail--map, width, tablet)
+		mobile: 20rem //- map-deep-get($c-thumbnail--map, width, mobile)
+	),
+	height: (
+		desktop: 21.5rem, //- map-deep-get($c-thumbnail--map, height, desktop)
+		tablet: 16.3rem, //- map-deep-get($c-thumbnail--map, height, tablet)
+		mobile: 14.3rem //- map-deep-get($c-thumbnail--map, height, mobile)
+	),
+	gap: (
+		all: 1rem //- map-deep-get($c-thumbnail--map, gap, all)
+	),
+	aspect-ratio: (
+		game-thumbnail: 1.4, //- map-deep-get($c-thumbnail--map, aspect-ratio, game-thumbnail)
+		rooms-thumbnail: 1, //- map-deep-get($c-thumbnail--map, aspect-ratio, rooms-thumbnail)
+	),
+	radius: .5rem, //- map-get($c-thumbnail--map, radius)
+	z-index: (
+		negative: -1, //- map-deep-get($c-thumbnail--map, z-index, negative)
+		reset: 0, //- map-deep-get($c-thumbnail--map, z-index, reset)
+		game-image: 0, //- map-deep-get($c-thumbnail--map, z-index, game-image)
+		badges: 2, //- map-deep-get($c-thumbnail--map, z-index, badges)
+		overlay: 1 //- map-deep-get($c-thumbnail--map, z-index, overlay)
+	)
+);
+
+//- GAME TILE > JACKPOT ELEMENT
+$c-thumbnail-jackpot--map : (
+	width: (
+		desktop: 14.2rem,
+		tablet: 12.3rem,
+		mobile--carousel: 10rem,
+		mobile--grid: 7.6rem,
+		tablet--user-panel: 10rem,
+		mobile--user-panel: 7.6rem
+	),
+	font-size: (
+		desktop: 1.4rem,
+		tablet: 1.2rem,
+		mobile: 1rem,
+	),
+	background-color: #fbbf00,
+	color: #3d3d3d,
+	radius: .3rem
+);
+
+//- c-TILE on c-USER-PANEL
+//- If change this values, update them also on $c-user-panel--active-height map, on '.c-user-panel .c-carousel' (c-user-panel.scss)
+$c-user-panel--thumbnail-width--map : (
+	max-page-desktop: 26rem, //- map-get($c-user-panel--thumbnail-width--map, max-page-desktop)
+	desktop: 23rem, //- map-get($c-user-panel--thumbnail-width--map, desktop)
+	tablet: 20rem, //- map-get($c-user-panel--thumbnail-width--map, tablet)
+	mobile: 13rem, //- map-get($c-user-panel--thumbnail-width--map, mobile)
+	aspect-ratio: 1.4 //- map-get($c-user-panel--thumbnail-width--map, aspect-ratio)
+);
+
+//- GAME TILE > BADGE ELEMENT
+$c-thumbnail__icons-map: (
+	gap : (
+		desktop: $c-basic-unit / 2,
+		mobile-tablet: $c-basic-unit / 4
+	),
+    icon-size: (
+		not-mobile: 1.5rem,
+        mobile--carousel: 1.25rem,
+        mobile--grid: 1rem,
+        tablet--user-panel: 1.25rem,
+        mobile--user-panel: 1rem
+    ),
+	hot-icon-size: (
+		not-mobile: 2rem,
+		mobile--carousel: 1.75rem,
+		mobile--grid: 1.25rem,
+		tablet--user-panel: 1.75rem,
+		mobile--user-panel: 1.25rem
+	),
+	badge-height : (
+		not-mobile: 3rem,
+		mobile--carousel: 2.5rem,
+		mobile--grid: 2rem,
+		tablet--user-panel: 2.5rem,
+		mobile--user-panel: 2rem
+	),
+	color: (
+		default: $cool-gray,
+		hover: $darkblue,
+		active: $pink,
+        fill: $white
+	)
+);
+
+
+
+// # NEW CONTENT NOTIFICATION > Color Schema and Structure Schema
+$content-notification--color : (
+	primary : $vibrantred, //- map-get($content-notification--color, primary)
+	c-thumbnail--border : $bright-sky-blue, //- map-get($content-notification--color, c-thumbnail--border)
+	counter-notification--color : $white, //- map-get($content-notification--color, counter-notification--color)
+	counter-notification--border : map-get($main-header--colors, background) //- map-get($content-notification--color, counter-notification--border)
+);
+
+
+$content-notification--structure : (
+	//- c-thumbnail--badge is the notification circle mark added to the c-thumbnail
+	//- used on .c-thumbnail__badge.c-thumbnail__badge--new.c-thumbnail__badge--highlighted
+	c-thumbnail--badge : (
+		not-mobile-size: 1rem, //- map-deep-get($content-notification--structure, c-thumbnail--badge, not-mobile-size)
+		mobile-size--carousel: .8rem, //- map-deep-get($content-notification--structure, c-thumbnail--badge, mobile-size--carousel)
+		mobile-size--grid: .7rem, //- map-deep-get($content-notification--structure, c-thumbnail--badge, mobile-size--grid)
+
+		not-mobile-offset-position: -.2rem, //- map-deep-get($content-notification--structure, c-thumbnail--badge, not-mobile-offset-position)
+		mobile-offset-position: -.1rem, //- map-deep-get($content-notification--structure, c-thumbnail--badge, mobile-offset-position)
+
+		general-radius: 50%, //- map-deep-get($content-notification--structure, c-thumbnail--badge, general-radius)
+
+		animation-delay: .8s //- map-deep-get($content-notification--structure, c-thumbnail--badge, animation-delay)
+	),
+
+	//- counter-notification--main-header is the notification counter added to desktop and devices main-header
+	counter-notification--main-header: (
+		desktop-size: 1.4rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, desktop-size)
+		tablet-size: 2rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, tablet-size)
+		mobile-size: 1.6rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, mobile-size)
+
+		desktop-font: .9rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, desktop-font)
+		tablet-font: 1.1rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, tablet-font)
+		mobile-font: .9rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, mobile-font)
+
+		desktop-top-position: .8rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, desktop-top-position)
+		desktop-right-position: -.2rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, desktop-right-position)
+
+		tablet-top-position: -.1rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, tablet-top-position)
+		tablet-right-position: -.8rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, tablet-right-position)
+
+		mobile-top-position: -.3rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, mobile-top-position)
+		mobile-right-position: -.4rem, //- map-deep-get($content-notification--structure, counter-notification--main-header, mobile-right-position)
+
+		general-border: .2rem solid map-get($content-notification--color, counter-notification--border), //- map-deep-get($content-notification--structure, counter-notification--main-header, general-border)
+
+		general-radius: 50%, //- map-deep-get($content-notification--structure, counter-notification--main-header, general-radius)
+
+		animation-delay: .2s //- map-deep-get($content-notification--structure, counter-notification--main-header, animation-delay)
+	),
+
+	//- counter-notification--slide-menu is the notification counter added to devices menu-item
+	counter-notification--slide-menu : (
+		font: 1.1rem, //- map-deep-get($content-notification--structure, counter-notification--slide-menu, font)
+		bullet-size: .5rem, //- map-deep-get($content-notification--structure, counter-notification--slide-menu, bullet-size)
+		gap: .5rem, //- map-deep-get($content-notification--structure, counter-notification--slide-menu, gap)
+		general-radius: 50%, //- map-deep-get($content-notification--structure, counter-notification--slide-menu, general-radius)
+		animation-delay: .5s //- map-deep-get($content-notification--structure, counter-notification--slide-menu, animation-delay)
+	),
+
+	//- counter-notification--portlet-title is the notification counter added to desktop and devices titles of relevant sections
+	counter-notification--portlet-title : (
+		not-mobile-height: 3rem, //- map-deep-get($content-notification--structure, counter-notification--portlet-title, not-mobile-height)
+		mobile-height: 2rem, //- map-deep-get($content-notification--structure, counter-notification--portlet-title, mobile-height)
+
+		not-mobile-font: 1.4rem, //- map-deep-get($content-notification--structure, counter-notification--portlet-title, not-mobile-font)
+		mobile-font: 1rem, //- map-deep-get($content-notification--structure, counter-notification--portlet-title, mobile-font)
+
+		not-mobile-h-padding: 1.5rem, //- map-deep-get($content-notification--structure, counter-notification--portlet-title, not-mobile-h-padding)
+		mobile-h-padding: 1rem, //- map-deep-get($content-notification--structure, counter-notification--portlet-title, mobile-h-padding)
+
+		animation-delay: .3s //- map-deep-get($content-notification--structure, counter-notification--portlet-title, animation-delay)
+	)
+);
+
+//- GAME TILE > BUTTONS
+$c-thumbnail__button-map : (
+	info-button-skin: (
+		background: $yellow,
+		color: $darkblue
+	),
+	play-button-skin: (
+		background: $pink,
+		color: $white
+	),
+	width: calc(50% - #{$c-basic-unit / 2}),
+	height: (
+        desktop: 4rem,
+        mobile-tablet: 3rem
+    ),
+	font-size: (
+        desktop: 1.4rem,
+        mobile-tablet: 1.2rem
+    ),
+	font-weight: 600,
+	radius: map-get($c-thumbnail--map, radius)
+);

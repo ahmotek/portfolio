@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="dist/main.css">
+  <title>Laura Garcia's Portfolio</title>
+</head>
+
+<body>
+  <h1 class="title">GAME TILE COMPONENT</h1>
+  <!-- <header class="main">header</header> -->
+  <!-- C-THUMBNAIL reusable and x-branded component requires a modifier class -->
+  <div class="c-thumbnail-container">
+    <div class="c-thumbnail c-thumbnail--type c-thumbnail--loading-state">
+      <div class="c-thumbnail__main">
+        <div class="c-thumbnail__image-wrapper">
+          <img class="c-thumbnail__image"
+            src="https://static.vecteezy.com/system/resources/previews/000/116/411/original/free-vector-pixel-message-game-over.jpg"
+            alt="Game Over" width="300">
+        </div>
+        <div class="c-thumbnail__icon-buttons-group">
+          <button class="c-icon-button c-icon-button--favourite">
+            <span class="c-icon c-icon--shape-only">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="c-icon__svg">
+                <use xlink:href="#FAVOURITE" x="0" y="0" />
+              </svg>
+            </span>
+          </button>
+          <button class="c-icon-button c-icon-button--more-info">
+            <span class="c-icon c-icon--shape-only">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="c-icon__svg">
+                <use xlink:href="#INFORMATION" x="0" y="0" />
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div class="c-thumbnail__badges-group">
+          <!-- FOR ALL BADGES:
+          1. Add generic badge class (.c-thumbnail__badge) and a specific badge class (with badge name modifier)
+          2. .c-thumbnail__badge--${name.toLowerCase()} to output .c-thumbnail__badge--hot (Icon #ID is in uppercase) -->
+          <div class="c-thumbnail__badge c-thumbnail__badge--hot">
+            <span class="c-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="c-icon__svg">
+                <use xlink:href="#HOT" x="0" y="0" />
+              </svg>
+            </span>
+          </div>
+
+          <!-- FOR JACKPOT, NEW WRAPPER ELEMENT: 1. .c-thumbnail-jackpot to be wrapped by
+          a div with class .c-thumbnail__badge.c-thumbnail__badge--jackpot -->
+          <div class="c-thumbnail__badge c-thumbnail__badge--jackpot">
+            <span class="c-jackpot">
+              <span class="c-jackpot__currency">$</span>
+              <span class="c-jackpot__amount">2,116,890.56</span>
+            </span>
+          </div>
+
+          <!-- FOR Exclusive and New BADGES, check "c-thumbnail__badge c-thumbnail__badge--hot" approach -->
+          <div class="c-thumbnail__badge c-thumbnail__badge--exclusive">
+            <span class="c-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="c-icon__svg">
+                <use xlink:href="#EXCLUSIVE" x="0" y="0" />
+              </svg>
+            </span>
+          </div>
+
+          <div class="c-thumbnail__badge c-thumbnail__badge--new">
+            <span class="c-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="c-icon__svg">
+                <use xlink:href="#NEW" x="0" y="0" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- .c-overlay changes to .c-thumbnail__overlay and it affects to the children's class: 
+      1. .c-overlay__game-name changes to .c-thumbnail__game-name 
+      2. .c-overlay__buttons changes to .c-thumbnail__buttons 
+      3. .c-overlay__more-info changes to .c-thumbnail__more-info 
+      4. .c-overlay__play changes to .c-thumbnail__play -->
+      <div class="c-thumbnail__overlay">
+        <div class="c-thumbnail__game-name">
+          <span>Dynamic Title on Desktop Overlay Can Truncate Into Two Lines and more</span>
+        </div>
+
+        <div class="c-thumbnail__buttons-group">
+          <button class="c-button c-button--secondary">Info</button>
+          <button class="c-button c-button--primary">Play</button>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <symbol id="HOT" viewBox="0 0 24 24">
+            <path
+              d="M3.5 11.7s.9 1.3 2.6 2.4c0 0-1.3-11.2 7.1-13.1-2.2 8.1 2.7 10.4 4.5 6.1 3 4.1.7 7.6.7 7.6 1.2.2 2.3-1.2 2.3-1.2v.5c0 5-3.9 9-8.8 9s-8.8-4-8.8-9c.1-.8.2-1.5.4-2.3z"
+              fill="#ff6536" />
+            <path
+              d="M20.8 13.5s-1 1.4-2.2 1.2c0 0 2.2-3.5-.7-7.6-1.7 4.3-6.5 2-4.4-6.1-.4.1-.8.2-1.2.4V23c4.7 0 8.5-4 8.5-9v-.5z"
+              fill="#ff421d" />
+            <path
+              d="M8.3 19.1c0 2.1 1.8 3.9 4 3.9s4-1.7 4-3.9c0-1.2-.5-2.2-1.3-2.9-1.5 2-3.7-1.1-2-3.3-.1 0-4.7.6-4.7 6.2z"
+              fill="#fbbf00" />
+            <path d="M16.3 19.1c0-1.2-.5-2.2-1.3-2.9-1.5 2-3.7-1.1-2-3.3 0 0-.3 0-.6.1v10c2.1 0 3.9-1.7 3.9-3.9z"
+              fill="#ffa900" />
+          </symbol>
+          <symbol id="NEW" viewBox="0 0 24 24">
+            <path
+              d="M3.2 1h17.6c1.22 0 2.2.98 2.2 2.2v17.6c0 1.22-.98 2.2-2.2 2.2H3.2C1.98 23 1 22.02 1 20.8V3.2C1 1.98 1.98 1 3.2 1z"
+              fill="#02b5ec" />
+            <path
+              d="M16.96 15.72c-.5.23-.91.39-1.19.5-.28.12-.65.17-1.05.17-.6 0-1.07-.17-1.4-.5-.34-.35-.49-.75-.49-1.26 0-.14 0-.31.02-.52s.06-.49.12-.81l.55-2.27c.06-.25.1-.46.12-.65.04-.19.04-.37.04-.49 0-.27-.06-.49-.17-.63-.1-.17-.29-.25-.58-.25-.17 0-.41.07-.73.23-.31.16-.67.42-1.06.84l-1.27 6.18H7.36l1.07-5.25c.04-.17.06-.39.12-.63.06-.25.06-.46.06-.63 0-.33-.06-.54-.17-.68-.11-.1-.33-.18-.64-.18-.16 0-.32.02-.49.07-.17.06-.31.13-.44.16l.17-.77c.41-.19.81-.35 1.18-.48.38-.14.74-.2 1.07-.2.6 0 1.05.14 1.33.4.29.27.49.63.58 1.12h.06c.49-.5 1.01-.91 1.54-1.17.53-.29 1.09-.42 1.69-.42.56 0 1.01.17 1.31.52.31.35.48.77.48 1.27 0 .14-.02.31-.04.56-.02.23-.06.49-.12.75l-.58 2.41c-.06.19-.1.42-.14.7-.04.25-.06.44-.06.58 0 .33.06.56.18.68.14.12.36.17.69.17.16 0 .32-.04.51-.1.2-.07.34-.14.43-.17l-.19.75z"
+              fill="#fff" />
+          </symbol>
+          <symbol id="EXCLUSIVE" viewBox="0 0 24 24">
+            <path
+              d="M3.2 1h17.6c1.22 0 2.2.98 2.2 2.2v17.6c0 1.22-.98 2.2-2.2 2.2H3.2C1.98 23 1 22.02 1 20.8V3.2C1 1.98 1.98 1 3.2 1z"
+              fill="#960095" />
+            <path
+              d="M13.59 9.77c0-.48-.1-.84-.27-1.1a.82.82 0 0 0-.73-.38c-.44 0-.86.35-1.25 1.05-.4.69-.63 1.59-.75 2.66.33-.04.66-.09 1-.15.33-.06.6-.14.79-.22.43-.19.73-.42.93-.71.18-.29.28-.66.28-1.15zm-1.92 6.63c-.69 0-1.28-.09-1.8-.27a3.217 3.217 0 0 1-2.02-1.89c-.16-.43-.25-.91-.25-1.42 0-.66.13-1.3.38-1.93A5 5 0 0 1 9.1 9.21c.46-.48 1.06-.87 1.79-1.16.72-.3 1.51-.45 2.38-.45 1.03 0 1.79.15 2.34.48.52.33.81.8.81 1.44 0 .61-.22 1.14-.69 1.58-.46.45-1.09.76-1.88.98-.63.19-1.16.33-1.6.39-.44.08-.98.15-1.62.22.02.25.05.51.1.82.06.31.16.57.27.79.14.26.33.45.58.6s.58.22.95.22c.68 0 1.25-.12 1.71-.38.47-.26.93-.66 1.34-1.22l.62.5c-.51.72-1.17 1.27-1.98 1.7-.84.48-1.68.68-2.55.68z"
+              fill="#fff" />
+          </symbol>
+          <symbol id="INFORMATION" viewBox="0 0 24 24">
+            <path d="M12 1C5.92 1 1 5.92 1 12c0 6.07 4.92 11 11 11s11-4.93 11-11c0-6.08-4.92-11-11-11" />
+            <path
+              d="M13.18 6.41c.75 0 1.12.51 1.12 1.09 0 .73-.65 1.4-1.5 1.4-.71 0-1.12-.42-1.1-1.11.01-.58.5-1.38 1.48-1.38m-2.3 11.18c-.59 0-1.02-.36-.61-1.97l.68-2.85c.12-.46.14-.64 0-.64-.18 0-.95.32-1.4.63l-.3-.49c1.44-1.22 3.09-1.94 3.8-1.94.59 0 .69.71.39 1.81l-.78 2.99c-.14.53-.08.71.06.71.18 0 .76-.22 1.33-.68l.34.46c-1.39 1.42-2.92 1.97-3.51 1.97"
+              fill="currentColor" />
+          </symbol>
+          <symbol id="FAVOURITE" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M12 21.7l-.5-.5-1.9-1.9C4.4 14.1.2 10 2.4 5.5c1-2 3.1-3.2 5.4-3.2 1.7 0 3.2.7 4.2 1.9 1-1.2 2.5-1.9 4.2-1.9 2.3-.1 4.4 1.2 5.4 3.2 2.2 4.5-1.9 8.6-7.2 13.8l-1.9 1.9-.5.5z" />
+          </symbol>
+        </defs>
+      </svg>
+    </div>
+  </div>
+  <script src="dist/app.bundle.js"></script>
+</body>
+
+</html>

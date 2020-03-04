@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="dist/main.css">
+  <title>Sort Dropdown</title>
+</head>
+<body>
+  <!-- Toggle aspect of dropdown item -->
+  <label class="example-button example-button--dropdown" for="dropdownExample">
+    <input class="example-button__input" id="dropdownExample" type="checkbox" name="example-toggle"/>
+    <span class="example-button__dropdown-text">Dropdown UI</span>
+    <span class="example-button__inline-text">Inline UI</span>
+  </label>
+
+  <!-- Dropdown Layout - Sort Filter -->
+  <div id="dropdownEl" class="c-filter c-filter--dropdown">
+    <!-- c-radio-button component > prints class when input is checked-->
+    <div class="c-radio-button c-radio-button--toggle">
+      <input class="c-radio-button__input" id="toggleDropdown" type="checkbox" name="sort-list"/>
+      <label class="c-radio-button__label" for="toggleDropdown">
+        <span class="c-radio-button__text">Most Popular</span>
+      </label>
+    </div>
+    <div class="c-radio-button-group c-radio-button-group--sort">
+      <div class="c-radio-button c-radio-button--sort is-checked">
+        <input class="c-radio-button__input" id="filterSort1" type="radio" name="sort-list" value="item1" checked="checked"/>
+        <label class="c-radio-button__label" for="filterSort1"><span class="c-radio-button__text">Most Popular</span></label>
+      </div>
+      <div class="c-radio-button c-radio-button--sort">
+        <input class="c-radio-button__input" id="filterSort2" type="radio" name="sort-list" value="item2"/>
+        <label class="c-radio-button__label" for="filterSort2"><span class="c-radio-button__text">New</span></label>
+      </div>
+      <div class="c-radio-button c-radio-button--sort">
+        <input class="c-radio-button__input" id="filterSort3" type="radio" name="sort-list" value="item3"/>
+        <label class="c-radio-button__label" for="filterSort3"><span class="c-radio-button__text">Sizes</span></label>
+      </div>
+      <div class="c-radio-button c-radio-button--sort">
+        <input class="c-radio-button__input" id="filterSort4" type="radio" name="sort-list" value="item4"/>
+        <label class="c-radio-button__label" for="filterSort4"><span class="c-radio-button__text">A-Z</span></label>
+      </div>
+    </div>
+  </div>
+  <script src="dist/app.bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+@mixin box-shadow($background-color: transparent, $border-radius: 50%) {
+  background-color: $background-color;
+  box-shadow: map-get($button-box-shadow, default);
+  border-radius: $border-radius;
+}
+
+@mixin box-shadow-reset() {
+  box-shadow: map-get($button-box-shadow, hover);
+}

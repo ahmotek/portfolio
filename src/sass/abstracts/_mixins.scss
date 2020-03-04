@@ -1,3 +1,11 @@
 //- This file contains all application mixins
 
-@import 'mixins/base/event-wrapper';
+@import 'mixins/base/event-wrapper',
+        'mixins/base/box-shadow',
+        'mixins/base/fluid-type';
+        
+@import 'mixins/components/button';
+
+@import 'mixins/layout/truncate';
+
+@import 'mixins/react-components/c-thumbnail';
